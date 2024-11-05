@@ -1,4 +1,4 @@
-package store.back.promotion.entity;
+package store.back.domain.model;
 
 import java.time.LocalDate;
 import java.util.List;

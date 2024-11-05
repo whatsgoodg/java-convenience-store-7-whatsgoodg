@@ -1,9 +1,10 @@
-package store.back.promotion.entity;
+package store.back.model;
 
 import java.time.LocalDate;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import store.back.domain.model.Promotion;
 
 import static org.assertj.core.api.Assertions.*;
 
