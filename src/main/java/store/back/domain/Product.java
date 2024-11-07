@@ -1,4 +1,4 @@
-package store.back.domain.product;
+package store.back.domain;
 
 import store.global.exception.OutOfStockException;
 
