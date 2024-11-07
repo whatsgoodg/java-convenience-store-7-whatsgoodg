@@ -7,14 +7,14 @@ import store.back.domain.Promotion;
 public class PromotionFileLoader {
     private static final String promotionFilePath = "src/main/resources/promotions.md";
 
-    public static List<Promotion> loadPromotions(){
+    public static List<Promotion> loadPromotions() {
         List<List<String>> rows = FileRowLoader.loadFileToRows(promotionFilePath);
 
         return rows.stream().map(PromotionFileLoader::mapRowToPromotion).toList();
     }
 
-    private static Promotion mapRowToPromotion(List<String> rows){
-        if(rows.size() != Promotion.class.getDeclaredFields().length){
+    private static Promotion mapRowToPromotion(List<String> rows) {
+        if (rows.size() != Promotion.class.getDeclaredFields().length) {
             throw new IllegalArgumentException("Promotion의 필드 개수와 column 개수가 동일하지 않습니다.");
         }
         String name = rows.get(0);
@@ -25,5 +25,4 @@ public class PromotionFileLoader {
 
         return new Promotion(name, buy, get, startDate, endDate);
     }
-
 }
