@@ -8,6 +8,8 @@ import store.back.domain.Promotion;
 
 public class ProductFileLoader {
     private static final String productFilePath = "src/main/resources/products.md";
+    private static Integer productCount = 0;
+
     private static final List<Promotion> promotions = PromotionFileLoader.loadPromotions();
 
     public static List<Product> loadPromotions() {
@@ -17,7 +19,7 @@ public class ProductFileLoader {
     }
 
     private static Product mapRowToProduct(List<String> rows) {
-        if (rows.size() != Product.class.getDeclaredFields().length) {
+        if (rows.size() + 1 != Product.class.getDeclaredFields().length) {
             throw new IllegalArgumentException("Promotion의 필드 개수와 column 개수가 동일하지 않습니다.");
         }
         String name = rows.get(0);
@@ -25,7 +27,7 @@ public class ProductFileLoader {
         Integer quantity = Integer.valueOf(rows.get(2));
         Promotion promotion = findPromotionByName(rows.get(3));
 
-        return new Product(name, price, quantity, promotion);
+        return new Product(++productCount, name, price, quantity, promotion);
     }
 
     private static Promotion findPromotionByName(String name) {

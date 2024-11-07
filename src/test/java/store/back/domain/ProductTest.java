@@ -21,20 +21,15 @@ class ProductTest {
         Integer price = 1000;
         Integer quantity = 1000;
         //when
-        Product product = new Product(name, price, quantity,
-                new Promotion(promotionName, buy, get, startDate, endDate));
-        Promotion promotion = product.getPromotion();
+        Promotion promotion = new Promotion(promotionName, buy, get, startDate, endDate);
+        Product product = new Product(1, name, price, quantity, promotion);
         //then
+        assertThat(product.getId()).isEqualTo(1);
         assertThat(product.getName()).isEqualTo("asd");
         assertThat(product.getPrice()).isEqualTo(1000);
         assertThat(product.getQuantity()).isEqualTo(1000);
         assertThat(product.getQuantity()).isEqualTo(1000);
-        // promotion
-        assertThat(promotion.getName()).isEqualTo("asd");
-        assertThat(promotion.getBuy()).isEqualTo(1);
-        assertThat(promotion.getGet()).isEqualTo(1);
-        assertThat(promotion.getStartDate()).isEqualTo(LocalDate.parse("2024-11-01"));
-        assertThat(promotion.getEndDate()).isEqualTo(LocalDate.parse("2024-11-01"));
+        assertThat(product.getPromotion()).isEqualTo(promotion);
     }
 
     @ParameterizedTest
@@ -46,7 +41,7 @@ class ProductTest {
         Integer price = 1000;
         Integer quantity = 1000;
         //when
-        Product product = new Product(name, price, quantity,
+        Product product = new Product(1, name, price, quantity,
                 new Promotion(promotionName, buy, get, startDate, endDate));
         product.decreaseQuantity(1000);
         //then
@@ -61,7 +56,7 @@ class ProductTest {
         String name = "asd";
         Integer price = 1000;
         Integer quantity = 1000;
-        Product product = new Product(name, price, quantity,
+        Product product = new Product(1, name, price, quantity,
                 new Promotion(promotionName, buy, get, startDate, endDate));
         //when
         //then
