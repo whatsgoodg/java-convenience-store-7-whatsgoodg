@@ -17,7 +17,7 @@ public class FileRowLoader {
         }
     }
 
-    static List<List<String>> readAllRows(BufferedReader bufferedReader) throws IOException {
+    private static List<List<String>> readAllRows(BufferedReader bufferedReader) throws IOException {
         List<List<String>> rows = new ArrayList<>();
         String line;
         bufferedReader.readLine(); // 첫 줄을 날림
