@@ -37,7 +37,8 @@ class PromotionTest {
         //given
         //when
         //then
-        assertThatThrownBy(() -> new Promotion(name, buy, get, startDate, endDate)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Promotion(name, buy, get, startDate, endDate)).isInstanceOf(
+                IllegalArgumentException.class);
     }
 
     private static Stream<Arguments> invalidPromotionParams() {
