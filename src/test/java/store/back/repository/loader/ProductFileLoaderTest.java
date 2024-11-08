@@ -22,7 +22,7 @@ class ProductFileLoaderTest {
         Product product1 = new Product(1, "콜라", 1000, 10, promotion1);
         Product product2 = new Product(16, "컵라면", 1700, 10, promotion2);
         //when
-        List<Product> products = ProductFileLoader.loadPromotions();
+        List<Product> products = ProductFileLoader.loadProducts();
         //then
         assertThat(products.size()).isEqualTo(16);
         assertThat(products).usingRecursiveFieldByFieldElementComparator().contains(product1, product2);

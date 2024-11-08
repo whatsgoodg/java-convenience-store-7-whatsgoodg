@@ -3,22 +3,21 @@ package store.back.repository.loader;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.IntStream;
 import store.back.domain.Product;
 import store.back.domain.Promotion;
 
 public class ProductFileLoader {
     private static final String productFilePath = "src/main/resources/products.md";
-    private static Integer productCount = 0;
-
     private static final List<Promotion> promotions = PromotionFileLoader.loadPromotions();
 
-    public static List<Product> loadPromotions() {
+    public static List<Product> loadProducts() {
         List<List<String>> rows = FileRowLoader.loadFileToRows(productFilePath);
 
-        return rows.stream().map(ProductFileLoader::mapRowToProduct).toList();
+        return IntStream.range(0, rows.size()).mapToObj(i -> mapRowToProduct(rows.get(i), i + 1)).toList();
     }
 
-    private static Product mapRowToProduct(List<String> rows) {
+    private static Product mapRowToProduct(List<String> rows, Integer id) {
         if (rows.size() + 1 != Product.class.getDeclaredFields().length) {
             throw new IllegalArgumentException("Promotion의 필드 개수와 column 개수가 동일하지 않습니다.");
         }
@@ -27,7 +26,7 @@ public class ProductFileLoader {
         Integer quantity = Integer.valueOf(rows.get(2));
         Promotion promotion = findPromotionByName(rows.get(3));
 
-        return new Product(++productCount, name, price, quantity, promotion);
+        return new Product(id, name, price, quantity, promotion);
     }
 
     private static Promotion findPromotionByName(String name) {
