@@ -12,6 +12,7 @@ public class PromotionCheckService {
 
     /**
      * 모든 PurchaseProductInfos 구매하고자하는 상품에 대해 추가로 증정받을 수 있는 상품 정보(상품 이름, 수량)들을 반환
+     * (구매 수량) % (buy+get)이 buy와 같으면서, 상품 재고 수량이 구매 수량 + get보다 크거나 같을 경우 증정 가능
      *
      * @param purchaseProductInfos 구매하고자 하는 상품 정보
      * @return 추가로 증정받을 수 있는 상품 정보를 List로 반환, 빈 리스트 반환 시 그러한 상품이 존재하지 않음
