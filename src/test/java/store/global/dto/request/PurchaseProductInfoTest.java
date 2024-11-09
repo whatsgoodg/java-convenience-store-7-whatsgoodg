@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import store.global.dto.request.purchase.PurchaseProductInfo;
 import store.global.exception.InvalidPurchaseQuantityException;
 
 class PurchaseProductInfoTest {

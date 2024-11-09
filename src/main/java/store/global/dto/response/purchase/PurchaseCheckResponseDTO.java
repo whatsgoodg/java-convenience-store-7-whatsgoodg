@@ -1,8 +1,8 @@
-package store.global.dto.response;
+package store.global.dto.response.purchase;
 
 import java.util.List;
 
 public record PurchaseCheckResponseDTO(
         List<PromotionalProductInfo> promotionalPurchaseProductInfos,
-        List<FullPriceProductInfo> fullPricePurchaseProductInfos) {
+        List<NonPromotionalProductInfo> nonPromotionalProductInfos) {
 }

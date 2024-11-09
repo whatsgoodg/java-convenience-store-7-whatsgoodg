@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import store.global.dto.request.PurchaseProductInfo;
+import store.global.dto.request.purchase.PurchaseProductInfo;
 import store.global.exception.InvalidProductNameException;
 import store.global.exception.OutOfStockException;
 

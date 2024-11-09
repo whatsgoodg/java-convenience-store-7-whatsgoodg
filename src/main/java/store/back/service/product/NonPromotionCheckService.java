@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import store.back.domain.Product;
-import store.global.dto.request.PurchaseProductInfo;
-import store.global.dto.response.FullPriceProductInfo;
+import store.global.dto.request.purchase.PurchaseProductInfo;
+import store.global.dto.response.purchase.NonPromotionalProductInfo;
 
-public class FullPriceCheckService {
+public class NonPromotionCheckService {
     private final ProductQueryService productQueryService = new ProductQueryService();
 
     /**
@@ -19,28 +19,28 @@ public class FullPriceCheckService {
      * @param purchaseProductInfos
      * @return 정가로 구매해야하는 상품 정보를 리스트로 반환, 빈 리스트 반환시 그러한 상품이 존재하지 않음
      */
-    public List<FullPriceProductInfo> getFullPriceProductInfos(List<PurchaseProductInfo> purchaseProductInfos) {
-        List<FullPriceProductInfo> fullPriceProductInfos = new ArrayList<>();
+    public List<NonPromotionalProductInfo> getNonPromotionalProductInfos(List<PurchaseProductInfo> purchaseProductInfos) {
+        List<NonPromotionalProductInfo> nonPromotionalProductInfos = new ArrayList<>();
 
         purchaseProductInfos.forEach(purchaseProductInfo -> {
-            Optional<FullPriceProductInfo> fullPriceProductInfo = getFullPriceProductInfo(purchaseProductInfo);
-            fullPriceProductInfo.ifPresent(fullPriceProductInfos::add);
+            Optional<NonPromotionalProductInfo> fullPriceProductInfo = getNonPromotionalProductInfo(purchaseProductInfo);
+            fullPriceProductInfo.ifPresent(nonPromotionalProductInfos::add);
         });
-        return fullPriceProductInfos.stream().toList();
+        return nonPromotionalProductInfos.stream().toList();
     }
 
-    private Optional<FullPriceProductInfo> getFullPriceProductInfo(PurchaseProductInfo purchaseProductInfo) {
+    private Optional<NonPromotionalProductInfo> getNonPromotionalProductInfo(PurchaseProductInfo purchaseProductInfo) {
         Optional<Product> productWithPromotion = productQueryService
                 .findProductWithPromotion(purchaseProductInfo.name());
 
         if (productWithPromotion.isEmpty()) {
             return Optional.empty();
         }
-        return calculateFullPriceProductInfo(productWithPromotion.get(), purchaseProductInfo);
+        return calculateNonPromotionalProductInfo(productWithPromotion.get(), purchaseProductInfo);
     }
 
-    private Optional<FullPriceProductInfo> calculateFullPriceProductInfo(Product product,
-                                                                         PurchaseProductInfo purchaseProductInfo) {
+    private Optional<NonPromotionalProductInfo> calculateNonPromotionalProductInfo(Product product,
+                                                                                   PurchaseProductInfo purchaseProductInfo) {
         Integer buyAndGet = product.getPromotion().getBuy() + product.getPromotion().getGet();
         int productInfoPromotionCount = purchaseProductInfo.quantity() / buyAndGet - product.getQuantity() / buyAndGet;
         int quantityAfterPromotion = purchaseProductInfo.quantity() % buyAndGet;
@@ -49,6 +49,6 @@ public class FullPriceCheckService {
             return Optional.empty();
         }
         int fullPricePurchaseQuantity = productInfoPromotionCount * buyAndGet + quantityAfterPromotion;
-        return Optional.of(new FullPriceProductInfo(purchaseProductInfo.name(), fullPricePurchaseQuantity));
+        return Optional.of(new NonPromotionalProductInfo(purchaseProductInfo.name(), fullPricePurchaseQuantity));
     }
 }

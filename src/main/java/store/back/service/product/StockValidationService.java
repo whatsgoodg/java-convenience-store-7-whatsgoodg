@@ -2,7 +2,7 @@ package store.back.service.product;
 
 import java.util.List;
 import store.back.domain.Product;
-import store.global.dto.request.PurchaseProductInfo;
+import store.global.dto.request.purchase.PurchaseProductInfo;
 import store.global.exception.InvalidProductNameException;
 import store.global.exception.OutOfStockException;
 

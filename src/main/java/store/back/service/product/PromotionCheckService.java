@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import store.back.domain.Product;
-import store.global.dto.request.PurchaseProductInfo;
-import store.global.dto.response.PromotionalProductInfo;
+import store.global.dto.request.purchase.PurchaseProductInfo;
+import store.global.dto.response.purchase.PromotionalProductInfo;
 
 public class PromotionCheckService {
     private final ProductQueryService productQueryService = new ProductQueryService();

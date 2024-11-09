@@ -8,8 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import store.global.dto.request.PurchaseProductInfo;
-import store.global.dto.response.PromotionalProductInfo;
+import store.global.dto.request.purchase.PurchaseProductInfo;
+import store.global.dto.response.purchase.PromotionalProductInfo;
 
 class PromotionCheckServiceTest {
 

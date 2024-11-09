@@ -9,11 +9,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import store.global.dto.request.PurchaseCheckRequestDTO;
-import store.global.dto.request.PurchaseProductInfo;
-import store.global.dto.response.FullPriceProductInfo;
-import store.global.dto.response.PromotionalProductInfo;
-import store.global.dto.response.PurchaseCheckResponseDTO;
+import store.global.dto.request.purchase.PurchaseCheckRequestDTO;
+import store.global.dto.request.purchase.PurchaseProductInfo;
+import store.global.dto.response.purchase.NonPromotionalProductInfo;
+import store.global.dto.response.purchase.PromotionalProductInfo;
+import store.global.dto.response.purchase.PurchaseCheckResponseDTO;
 import store.global.exception.InvalidProductNameException;
 import store.global.exception.OutOfStockException;
 
@@ -45,7 +45,7 @@ class PurchaseCheckFacadeTest {
                                 List.of(
                                         new PromotionalProductInfo("콜라", 1)),
                                 List.of(
-                                        new FullPriceProductInfo("사이다", 3))
+                                        new NonPromotionalProductInfo("사이다", 3))
                         )
                 ),
                 Arguments.of(

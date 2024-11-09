@@ -1,4 +1,4 @@
-package store.global.dto.request;
+package store.global.dto.request.purchase;
 
 import java.util.List;
 
