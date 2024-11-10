@@ -9,6 +9,7 @@ import store.back.domain.product.Product;
 import store.back.service.product.ProductQueryService;
 import store.global.dto.request.order.OrderProductInfo;
 import store.global.dto.request.order.OrderRequestDTO;
+import store.global.exception.NoPurchaseProductException;
 
 public class OrderLineService {
     private final ProductQueryService productQueryService = new ProductQueryService();
@@ -24,12 +25,12 @@ public class OrderLineService {
         return orderLines.stream().toList();
     }
 
-    private void markMemberShip(List<OrderLine> orderProductInfos, Boolean isMembership){
-        if(!isMembership){
+    private void markMemberShip(List<OrderLine> orderProductInfos, Boolean isMembership) {
+        if (!isMembership) {
             return;
         }
         orderProductInfos.forEach(orderLine -> {
-            if(orderLine.getOrderLineStatus() == OrderLineStatus.NONE){
+            if (orderLine.getOrderLineStatus() == OrderLineStatus.NONE) {
                 orderLine.setOrderLineStatus(OrderLineStatus.MEMBERSHIP);
             }
         });
@@ -41,14 +42,13 @@ public class OrderLineService {
         Optional<Product> productWithPromotion = productQueryService.findProductWithPromotion(orderProductInfo.name());
         productWithPromotion.ifPresentOrElse(product -> {
             List<OrderLine> promotionalOrderLines = createPromotionalOrderLines(orderProductInfo, product);
-            promotionalOrderLines.add(createOrderLineAfterPromotion(orderProductInfo, product));
+            promotionalOrderLines.addAll(createOrderLineAfterPromotion(orderProductInfo, product));
             orderLines.addAll(promotionalOrderLines);
         }, () -> {
-            orderLines.add(new OrderLine(orderProductInfo.name(), orderProductInfo.quantity(), OrderLineStatus.NONE));
+            orderLines.add(createNonPromotionalProduct(orderProductInfo));
         });
         return orderLines;
     }
-
 
     private List<OrderLine> createPromotionalOrderLines(OrderProductInfo orderProductInfo, Product product) {
         Integer promotionCount = calculatePromotionCount(orderProductInfo, product);
@@ -57,15 +57,31 @@ public class OrderLineService {
         if (promotionCount > 0) {
             int buyQuantity = promotionCount * product.getPromotion().getBuy();
             int getQuantity = promotionCount * product.getPromotion().getGet();
-            orderLines.add(new OrderLine(orderProductInfo.name(), buyQuantity, OrderLineStatus.PROMOTION));
-            orderLines.add(new OrderLine(orderProductInfo.name(), getQuantity, OrderLineStatus.FREEBIE));
+            orderLines.add(new OrderLine(orderProductInfo.name(), buyQuantity, product.getPrice() * buyQuantity,
+                    OrderLineStatus.PROMOTION));
+            orderLines.add(new OrderLine(orderProductInfo.name(), getQuantity, product.getPrice() * getQuantity,
+                    OrderLineStatus.FREEBIE));
         }
         return orderLines;
     }
 
-    private OrderLine createOrderLineAfterPromotion(OrderProductInfo orderProductInfo, Product product) {
+    private List<OrderLine> createOrderLineAfterPromotion(OrderProductInfo orderProductInfo, Product product) {
+        List<OrderLine> orderLines = new ArrayList<>();
         Integer nonPromotionQuantity = calculateNonPromotionQuantity(orderProductInfo, product);
-        return new OrderLine(orderProductInfo.name(), nonPromotionQuantity, OrderLineStatus.NONE);
+        if (nonPromotionQuantity > 0) {
+            orderLines.add(new OrderLine(orderProductInfo.name(), nonPromotionQuantity,
+                    product.getPrice() * nonPromotionQuantity, OrderLineStatus.NONE));
+        }
+        return orderLines;
+    }
+
+    private OrderLine createNonPromotionalProduct(OrderProductInfo orderProductInfo) {
+        Optional<Product> productNoPromotion = productQueryService.findProductNoPromotion(orderProductInfo.name());
+        if (productNoPromotion.isEmpty()) {
+            throw new NoPurchaseProductException();
+        }
+        return new OrderLine(orderProductInfo.name(), orderProductInfo.quantity(),
+                orderProductInfo.quantity() * productNoPromotion.get().getPrice(), OrderLineStatus.NONE);
     }
 
     private Integer calculatePromotionCount(OrderProductInfo orderProductInfo, Product product) {

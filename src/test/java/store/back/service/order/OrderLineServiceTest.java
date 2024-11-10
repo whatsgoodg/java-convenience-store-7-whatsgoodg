@@ -34,29 +34,35 @@ class OrderLineServiceTest {
                         new OrderRequestDTO(
                                 List.of(
                                         new OrderProductInfo("콜라", 12)), true),
-                        List.of(new OrderLine("콜라", 6, OrderLineStatus.PROMOTION),
-                                new OrderLine("콜라", 3, OrderLineStatus.FREEBIE),
-                                new OrderLine("콜라", 3, OrderLineStatus.MEMBERSHIP))),
+                        List.of(new OrderLine("콜라", 6, 6000, OrderLineStatus.PROMOTION),
+                                new OrderLine("콜라", 3, 3000, OrderLineStatus.FREEBIE),
+                                new OrderLine("콜라", 3, 3000, OrderLineStatus.MEMBERSHIP))),
+                Arguments.of(
+                        new OrderRequestDTO(
+                                List.of(
+                                        new OrderProductInfo("콜라", 9)), true),
+                        List.of(new OrderLine("콜라", 6, 6000, OrderLineStatus.PROMOTION),
+                                new OrderLine("콜라", 3, 3000, OrderLineStatus.FREEBIE))),
                 Arguments.of(
                         new OrderRequestDTO(
                                 List.of(
                                         new OrderProductInfo("콜라", 12),
                                         new OrderProductInfo("컵라면", 10)), true),
                         List.of(
-                                new OrderLine("콜라", 6, OrderLineStatus.PROMOTION),
-                                new OrderLine("콜라", 3, OrderLineStatus.FREEBIE),
-                                new OrderLine("콜라", 3, OrderLineStatus.MEMBERSHIP),
-                                new OrderLine("컵라면", 10, OrderLineStatus.MEMBERSHIP))),
+                                new OrderLine("콜라", 6, 6000, OrderLineStatus.PROMOTION),
+                                new OrderLine("콜라", 3, 3000, OrderLineStatus.FREEBIE),
+                                new OrderLine("콜라", 3, 3000, OrderLineStatus.MEMBERSHIP),
+                                new OrderLine("컵라면", 10, 17000, OrderLineStatus.MEMBERSHIP))),
                 Arguments.of(
                         new OrderRequestDTO(
                                 List.of(
                                         new OrderProductInfo("물", 10),
                                         new OrderProductInfo("초코바", 5)), false),
                         List.of(
-                                new OrderLine("물", 10, OrderLineStatus.NONE),
-                                new OrderLine("초코바", 2, OrderLineStatus.PROMOTION),
-                                new OrderLine("초코바", 2, OrderLineStatus.FREEBIE),
-                                new OrderLine("초코바", 1, OrderLineStatus.NONE))),
+                                new OrderLine("물", 10, 5000, OrderLineStatus.NONE),
+                                new OrderLine("초코바", 2, 2400, OrderLineStatus.PROMOTION),
+                                new OrderLine("초코바", 2, 2400, OrderLineStatus.FREEBIE),
+                                new OrderLine("초코바", 1, 1200, OrderLineStatus.NONE))),
                 Arguments.of(
                         new OrderRequestDTO(
                                 List.of(
@@ -64,12 +70,12 @@ class OrderLineServiceTest {
                                         new OrderProductInfo("오렌지주스", 10),
                                         new OrderProductInfo("에너지바", 5)), false),
                         List.of(
-                                new OrderLine("감자칩", 2, OrderLineStatus.PROMOTION),
-                                new OrderLine("감자칩", 2, OrderLineStatus.FREEBIE),
-                                new OrderLine("감자칩", 1, OrderLineStatus.NONE),
-                                new OrderLine("오렌지주스", 4, OrderLineStatus.PROMOTION),
-                                new OrderLine("오렌지주스", 4, OrderLineStatus.FREEBIE),
-                                new OrderLine("오렌지주스", 2, OrderLineStatus.NONE),
-                                new OrderLine("에너지바", 5, OrderLineStatus.NONE))));
+                                new OrderLine("감자칩", 2, 3000, OrderLineStatus.PROMOTION),
+                                new OrderLine("감자칩", 2, 3000, OrderLineStatus.FREEBIE),
+                                new OrderLine("감자칩", 1, 1500, OrderLineStatus.NONE),
+                                new OrderLine("오렌지주스", 4, 7200, OrderLineStatus.PROMOTION),
+                                new OrderLine("오렌지주스", 4, 7200, OrderLineStatus.FREEBIE),
+                                new OrderLine("오렌지주스", 2, 3600, OrderLineStatus.NONE),
+                                new OrderLine("에너지바", 5, 10000, OrderLineStatus.NONE))));
     }
 }
