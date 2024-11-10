@@ -61,7 +61,7 @@ class OrderTest {
                                 List.of(
                                         new FreebieProduct("초코바", 2),
                                         new FreebieProduct("콜라", 2)), 12000, 11,
-                                4400, 840, 6760))
+                                4400, 360, 7240))
         );
     }
 }

@@ -4,7 +4,7 @@ public enum OrderLineStatus {
     NONE(1.0),
     PROMOTION(1.0),
     FREEBIE(0.0),
-    MEMBERSHIP(0.7);
+    MEMBERSHIP(0.3);
 
     private final Double discountRate;
 
