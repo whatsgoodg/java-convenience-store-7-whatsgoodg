@@ -1,5 +1,6 @@
 package store.back.service.product;
 
+import camp.nextstep.edu.missionutils.DateTimes;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -24,19 +25,20 @@ public class ProductQueryService {
     }
 
     private Boolean isTodayInPromotionPeriod(Product product) {
+        LocalDate now = DateTimes.now().toLocalDate();
         LocalDate startDate = product.getPromotion().getStartDate();
         LocalDate endDate = product.getPromotion().getEndDate();
-        return LocalDate.now().isEqual(startDate) || LocalDate.now().isAfter(startDate)
-                && LocalDate.now().isEqual(endDate) || LocalDate.now().isBefore(endDate);
+        return (now.isEqual(startDate) && now.isBefore(endDate)) || (now.isEqual(endDate) && now.isAfter(startDate))
+                || (now.isAfter(startDate) && now.isBefore(endDate));
     }
 
     public Optional<Product> findProductNoPromotion(String name) {
         List<Product> findProducts = productRepository.findByName(name);
-        return findProducts.stream()
-                .filter(findProduct -> Objects.equals(findProduct.getPromotion().getName(), "null")).findFirst();
+        return findProducts.stream().filter(findProduct -> Objects.equals(findProduct.getPromotion().getName(), "null"))
+                .findFirst();
     }
 
-    public Product save(Product product){
+    public Product save(Product product) {
         return productRepository.save(product);
     }
 
