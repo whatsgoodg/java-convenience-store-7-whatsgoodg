@@ -31,7 +31,7 @@ public class ShoppingCart {
         productInfos.put(name, productInfos.get(name) - quantity);
     }
 
-    public void setIsMembership() {
+    public void setMembership() {
         this.isMembership = true;
     }
 
