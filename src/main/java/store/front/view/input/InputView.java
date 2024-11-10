@@ -65,7 +65,6 @@ public class InputView {
             if (!isYes) {
                 shoppingCart.decreaseQuantity(nonPromotionalProductInfo.name(), nonPromotionalProductInfo.quantity());
             }
-
         });
     }
 
