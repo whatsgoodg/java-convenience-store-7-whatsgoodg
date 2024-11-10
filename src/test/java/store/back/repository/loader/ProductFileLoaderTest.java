@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import store.back.domain.product.Product;
@@ -20,11 +21,12 @@ class ProductFileLoaderTest {
         Promotion promotion2 = new Promotion("null", 1, 1, LocalDate.parse("2024-01-01"),
                 LocalDate.parse("2024-01-01"));
         Product product1 = new Product(1, "콜라", 1000, 10, promotion1);
-        Product product2 = new Product(16, "컵라면", 1700, 10, promotion2);
+        Product product2 = new Product(18, "컵라면", 1700, 10, promotion2);
         //when
-        List<Product> products = ProductFileLoader.loadProducts();
+        Map<Integer, Product> products = ProductFileLoader.loadProducts();
         //then
-        assertThat(products.size()).isEqualTo(16);
-        assertThat(products).usingRecursiveFieldByFieldElementComparator().contains(product1, product2);
+        assertThat(products.size()).isEqualTo(18);
+        assertThat(products.get(1)).usingRecursiveComparison().isEqualTo(product1);
+        assertThat(products.get(18)).usingRecursiveComparison().isEqualTo(product2);
     }
 }

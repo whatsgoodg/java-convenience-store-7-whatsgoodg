@@ -20,7 +20,7 @@ class ProductDisplayFacadeTest {
         ProductDisplayResponseDTO productDisplayResponseDTO = productDisplayFacade.getAllProducts();
         List<ProductInfo> productInfos = productDisplayResponseDTO.productInfos();
         //then
-        assertThat(productInfos.size()).isEqualTo(16);
+        assertThat(productInfos.size()).isEqualTo(18);
         assertThat(productInfos).usingRecursiveFieldByFieldElementComparator().contains(productInfo);
     }
 }

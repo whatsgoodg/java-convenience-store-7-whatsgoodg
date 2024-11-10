@@ -19,7 +19,7 @@ class FileRowLoaderTest {
         //when
         List<List<String>> loadedRows = FileRowLoader.loadFileToRows(filePath);
         //then
-        assertThat(loadedRows.size()).isEqualTo(16);
+        assertThat(loadedRows.size()).isEqualTo(18);
         assertThat(loadedRows).contains(expectedRow1);
         assertThat(loadedRows).contains(expectedRow2);
     }

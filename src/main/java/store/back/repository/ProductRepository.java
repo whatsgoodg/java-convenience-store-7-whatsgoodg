@@ -9,12 +9,7 @@ import store.back.domain.product.Product;
 import store.back.repository.loader.ProductFileLoader;
 
 public class ProductRepository {
-    private final Map<Integer, Product> products;
-
-    public ProductRepository() {
-        List<Product> products = ProductFileLoader.loadProducts();
-        this.products = products.stream().collect(Collectors.toMap(Product::getId, product -> product));
-    }
+    private static final Map<Integer, Product> products = ProductFileLoader.loadProducts();
 
     public List<Product> findAll() {
         return products.entrySet().stream().sorted(Map.Entry.comparingByKey()).map(Map.Entry::getValue).toList();

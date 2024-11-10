@@ -26,7 +26,7 @@ class ProductRepositoryTest {
         //when
         List<Product> products = productRepository.findAll();
         //then
-        assertThat(products.size()).isEqualTo(16);
+        assertThat(products.size()).isEqualTo(18);
         assertThat(products).usingRecursiveFieldByFieldElementComparator().contains(product1, product2);
     }
 
@@ -34,7 +34,7 @@ class ProductRepositoryTest {
         return Stream.of(Arguments.of(
                 new Product(1, "콜라", 1000, 10,
                         new Promotion("탄산2+1", 2, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-12-31"))),
-                new Product(16, "컵라면", 1700, 10,
+                new Product(18, "컵라면", 1700, 10,
                         new Promotion("null", 1, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-01-01")))));
     }
 

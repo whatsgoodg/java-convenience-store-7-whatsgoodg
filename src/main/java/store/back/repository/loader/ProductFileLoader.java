@@ -1,8 +1,10 @@
 package store.back.repository.loader;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import store.back.domain.product.Product;
 import store.back.domain.product.Promotion;
@@ -11,10 +13,12 @@ public class ProductFileLoader {
     private static final String productFilePath = "src/main/resources/products.md";
     private static final List<Promotion> promotions = PromotionFileLoader.loadPromotions();
 
-    public static List<Product> loadProducts() {
+    public static Map<Integer, Product> loadProducts() {
         List<List<String>> rows = FileRowLoader.loadFileToRows(productFilePath);
 
-        return IntStream.range(0, rows.size()).mapToObj(i -> mapRowToProduct(rows.get(i), i + 1)).toList();
+        List<Product> products = IntStream.range(0, rows.size()).mapToObj(i -> mapRowToProduct(rows.get(i), i + 1))
+                .toList();
+        return products.stream().collect(Collectors.toMap(Product::getId, product -> product));
     }
 
     private static Product mapRowToProduct(List<String> rows, Integer id) {
