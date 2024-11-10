@@ -36,17 +36,15 @@ public class InputView {
      * 사용자에게 프로모션 적용 상품 추가 구매, 프로모션 미적용 정가 구매를 물어봄. 이에 따라 장바구니에서 수량을 제외하거나 추가
      *
      * @param purchaseCheckResponseDTO
-     * @return 총 구매 상품의 수량
-     *         프로모션 미적용에 대해, 프로모션 미적용 상품을 제외할 경우 총 구매 상품의 수량이 0이 될 수 있음.
-     *         해당 경우엔 컨트롤러에서 예외를 던져 구매를 재시작함.
+     * @return 총 구매 상품의 수량 프로모션 미적용에 대해, 프로모션 미적용 상품을 제외할 경우 총 구매 상품의 수량이 0이 될 수 있음. 해당 경우엔 컨트롤러에서 예외를 던져 구매를 재시작함.
      */
-    public Integer promptUserForPromotions(PurchaseCheckResponseDTO purchaseCheckResponseDTO) {
+    public Integer promptUserForPromotions(final PurchaseCheckResponseDTO purchaseCheckResponseDTO) {
         promptUserForPromotion(purchaseCheckResponseDTO.promotionalPurchaseProductInfos());
         promptUserForNonPromotion(purchaseCheckResponseDTO.nonPromotionalProductInfos());
         return shoppingCart.getProductInfos().values().stream().mapToInt(value -> value).sum();
     }
 
-    private void promptUserForPromotion(List<PromotionalProductInfo> promotionalProductInfos) {
+    private void promptUserForPromotion(final List<PromotionalProductInfo> promotionalProductInfos) {
         promotionalProductInfos.forEach(promotionalProductInfo -> {
             System.out.println(PromotionalProductMessageBuilder.build(promotionalProductInfo));
             Boolean isYes = readYesOrNo();
@@ -57,7 +55,7 @@ public class InputView {
         });
     }
 
-    private void promptUserForNonPromotion(List<NonPromotionalProductInfo> nonPromotionalProductInfos) {
+    private void promptUserForNonPromotion(final List<NonPromotionalProductInfo> nonPromotionalProductInfos) {
         nonPromotionalProductInfos.forEach(nonPromotionalProductInfo -> {
             System.out.println(NonPromotionalProductMessageBuilder.build(nonPromotionalProductInfo));
             Boolean isYes = readYesOrNo();
@@ -86,6 +84,12 @@ public class InputView {
                 .map(entry -> new OrderProductInfo(entry.getKey(), entry.getValue())).toList();
 
         return new OrderRequestDTO(orderProductInfos, membership);
+    }
+
+    public Boolean promptRetry() {
+        System.out.println(InputMessage.RETRY.getMessage());
+        String input = Console.readLine();
+        return YNParser.parse(input);
     }
 
     private Boolean readYesOrNo() {
