@@ -1,4 +1,4 @@
-package store.global.dto.response.order;
+package store.global.dto.request.order;
 
 import java.util.List;
 
