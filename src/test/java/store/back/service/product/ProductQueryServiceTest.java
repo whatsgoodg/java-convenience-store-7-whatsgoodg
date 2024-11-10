@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -56,7 +57,7 @@ class ProductQueryServiceTest {
     @ParameterizedTest
     @MethodSource("noPromotionProductParams")
     @DisplayName("findProductWithPromotion() 매서드를 통해 프로모션이 없을 경우 빈 Optional 객체 반환 테스트")
-    void 이름을_사용하여_프로모션이_없을경우_빈_Optioanl_반환(String name, Product product) {
+    void 이름을_사용하여_프로모션이_없을경우_빈_Optioanl_반환(String name) {
         //given
         //when
         Optional<Product> productsWithPromotion = productQueryService.findProductWithPromotion(name);
@@ -65,8 +66,18 @@ class ProductQueryServiceTest {
     }
 
     private static Stream<Arguments> noPromotionProductParams() {
-        return Stream.of(Arguments.of("물", new Product(7, "물", 500, 10,
-                new Promotion("null", 1, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-01-01")))));
+        return Stream.of(Arguments.of("물"));
+    }
+
+    @Test
+    @DisplayName("findProductWithoutPromotion() 매서드 테스트")
+    void 프로모션이_없는_상품_반환() {
+        //given
+        String productName = "콜라";
+        //when
+        Optional<Product> productNoPromotion = productQueryService.findProductNoPromotion(productName);
+        //then
+        assertThat(productNoPromotion.isPresent()).isTrue();
     }
 
 }
