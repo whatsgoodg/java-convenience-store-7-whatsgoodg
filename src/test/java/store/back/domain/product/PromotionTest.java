@@ -1,4 +1,4 @@
-package store.back.domain;
+package store.back.domain.product;
 
 import java.time.LocalDate;
 import java.util.stream.Stream;

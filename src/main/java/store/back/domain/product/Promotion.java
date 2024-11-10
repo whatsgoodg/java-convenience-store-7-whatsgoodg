@@ -1,7 +1,6 @@
-package store.back.domain;
+package store.back.domain.product;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class Promotion {
     private final String name;

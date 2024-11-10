@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import store.back.domain.Promotion;
+import store.back.domain.product.Promotion;
 
 class PromotionFileLoaderTest {
 

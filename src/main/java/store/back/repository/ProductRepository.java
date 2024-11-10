@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import store.back.domain.Product;
+import store.back.domain.product.Product;
 import store.back.repository.loader.ProductFileLoader;
 
 public class ProductRepository {

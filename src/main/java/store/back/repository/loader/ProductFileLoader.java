@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.IntStream;
-import store.back.domain.Product;
-import store.back.domain.Promotion;
+import store.back.domain.product.Product;
+import store.back.domain.product.Promotion;
 
 public class ProductFileLoader {
     private static final String productFilePath = "src/main/resources/products.md";

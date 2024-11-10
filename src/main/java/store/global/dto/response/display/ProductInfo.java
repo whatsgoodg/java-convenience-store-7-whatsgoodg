@@ -1,6 +1,6 @@
 package store.global.dto.response.display;
 
-import store.back.domain.Product;
+import store.back.domain.product.Product;
 
 public record ProductInfo(String name, Integer price, Integer quantity, String promotionName) {
 

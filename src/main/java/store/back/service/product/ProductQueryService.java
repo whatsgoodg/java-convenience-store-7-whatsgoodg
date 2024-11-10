@@ -3,7 +3,7 @@ package store.back.service.product;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import store.back.domain.Product;
+import store.back.domain.product.Product;
 import store.back.repository.ProductRepository;
 
 public class ProductQueryService {

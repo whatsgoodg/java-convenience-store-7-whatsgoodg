@@ -1,4 +1,4 @@
-package store.back.domain;
+package store.back.domain.product;
 
 import static org.assertj.core.api.Assertions.*;
 

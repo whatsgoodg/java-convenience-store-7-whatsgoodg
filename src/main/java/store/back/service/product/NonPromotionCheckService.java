@@ -3,7 +3,7 @@ package store.back.service.product;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import store.back.domain.Product;
+import store.back.domain.product.Product;
 import store.global.dto.request.purchase.PurchaseProductInfo;
 import store.global.dto.response.purchase.NonPromotionalProductInfo;
 

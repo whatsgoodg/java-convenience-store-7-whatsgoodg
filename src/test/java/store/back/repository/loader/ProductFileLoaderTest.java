@@ -6,8 +6,8 @@ import java.time.LocalDate;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import store.back.domain.Product;
-import store.back.domain.Promotion;
+import store.back.domain.product.Product;
+import store.back.domain.product.Promotion;
 
 class ProductFileLoaderTest {
 

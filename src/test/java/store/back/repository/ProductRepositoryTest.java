@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import store.back.domain.Product;
-import store.back.domain.Promotion;
+import store.back.domain.product.Product;
+import store.back.domain.product.Promotion;
 
 class ProductRepositoryTest {
 

@@ -2,7 +2,7 @@ package store.back.repository.loader;
 
 import java.time.LocalDate;
 import java.util.List;
-import store.back.domain.Promotion;
+import store.back.domain.product.Promotion;
 
 public class PromotionFileLoader {
     private static final String promotionFilePath = "src/main/resources/promotions.md";
