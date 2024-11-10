@@ -20,7 +20,7 @@ class StockValidationServiceTest {
         //given
         List<PurchaseProductInfo> purchaseProductInfos = List.of(new PurchaseProductInfo("햄버거", 12));
         //when
-        assertThatThrownBy(() -> stockValidationService.validate(purchaseProductInfos)).isInstanceOf(
+        assertThatThrownBy(() -> stockValidationService.validatePurchasable(purchaseProductInfos)).isInstanceOf(
                 InvalidProductNameException.class);
     }
 
@@ -30,7 +30,7 @@ class StockValidationServiceTest {
         //given
         List<PurchaseProductInfo> purchaseProductInfos = List.of(new PurchaseProductInfo("콜라", 22));
         //when
-        assertThatThrownBy(() -> stockValidationService.validate(purchaseProductInfos)).isInstanceOf(
+        assertThatThrownBy(() -> stockValidationService.validatePurchasable(purchaseProductInfos)).isInstanceOf(
                 OutOfStockException.class);
     }
 
@@ -42,6 +42,6 @@ class StockValidationServiceTest {
                 new PurchaseProductInfo("콜라", 5),
                 new PurchaseProductInfo("물", 2));
         //when
-        assertThatCode(() -> stockValidationService.validate(purchaseProductInfos)).doesNotThrowAnyException();
+        assertThatCode(() -> stockValidationService.validatePurchasable(purchaseProductInfos)).doesNotThrowAnyException();
     }
 }

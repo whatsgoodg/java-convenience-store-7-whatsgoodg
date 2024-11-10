@@ -1,6 +1,9 @@
 package store.back.service.product;
 
 import java.util.List;
+import java.util.Optional;
+import store.back.domain.order.OrderLine;
+import store.back.domain.order.OrderLineStatus;
 import store.back.domain.product.Product;
 import store.global.dto.request.purchase.PurchaseProductInfo;
 import store.global.exception.InvalidProductNameException;
@@ -9,9 +12,9 @@ import store.global.exception.OutOfStockException;
 public class StockValidationService {
     private final ProductQueryService productQueryService = new ProductQueryService();
 
-    public void validate(List<PurchaseProductInfo> purchaseProductInfos) {
+    public void validatePurchasable(List<PurchaseProductInfo> purchaseProductInfos) {
         purchaseProductInfos.forEach(this::validateProductName);
-        purchaseProductInfos.forEach(this::validatePurchasable);
+        purchaseProductInfos.forEach(this::validateStocks);
     }
 
     private void validateProductName(PurchaseProductInfo purchaseProductInfo) {
@@ -22,7 +25,7 @@ public class StockValidationService {
         }
     }
 
-    private void validatePurchasable(PurchaseProductInfo PurchaseProductInfo) {
+    private void validateStocks(PurchaseProductInfo PurchaseProductInfo) {
         List<Product> products = productQueryService.findByName(PurchaseProductInfo.name());
 
         int totalQuantity = products.stream().mapToInt(Product::getQuantity).sum();
@@ -30,4 +33,13 @@ public class StockValidationService {
             throw new OutOfStockException();
         }
     }
+
+//    public void validateOrderLines(OrderLine orderLine) {
+//        Optional<Product> productWithPromotion = productQueryService.findProductWithPromotion(
+//                orderLine.getProductName());
+//        Optional<Product> productNoPromotion = productQueryService.findProductNoPromotion(
+//                orderLine.getProductName());
+//        Integer promotionQuantity = productWithPromotion.map(Product::getQuantity).orElse(0);
+//        Integer noPromotionQuantity = productNoPromotion.map(Product::getQuantity).orElse(0);
+//    }
 }

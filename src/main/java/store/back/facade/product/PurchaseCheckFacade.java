@@ -17,7 +17,7 @@ public class PurchaseCheckFacade {
 
     public PurchaseCheckResponseDTO checkPurchaseConditions(PurchaseCheckRequestDTO purchaseCheckRequestDTO) {
         List<PurchaseProductInfo> purchaseProductInfos = purchaseCheckRequestDTO.purchaseProductInfos();
-        stockValidationService.validate(purchaseProductInfos);
+        stockValidationService.validatePurchasable(purchaseProductInfos);
 
         List<PromotionalProductInfo> promotionalPurchaseProductInfos = promotionCheckService.getPromotionalProductInfos(
                 purchaseProductInfos);
