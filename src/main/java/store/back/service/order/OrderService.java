@@ -51,6 +51,7 @@ public class OrderService {
             decreasedQuantity = product.getQuantity();
         }
         product.decreaseQuantity(decreasedQuantity);
+        productQueryService.save(product);
         return quantity - decreasedQuantity;
     }
 }
