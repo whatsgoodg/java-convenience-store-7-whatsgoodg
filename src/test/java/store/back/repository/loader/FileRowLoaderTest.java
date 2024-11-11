@@ -31,13 +31,11 @@ class FileRowLoaderTest {
         String filePath = "promotions.md";
         // 맨 윗줄과 마지막 줄을 포함하는지
         List<String> expectedRow1 = List.of("탄산2+1", "2", "1", "2024-01-01", "2024-12-31");
-        List<String> expectedRow2 = List.of("null", "1", "1", "2024-01-01", "2024-01-01");
         //when
         List<List<String>> loadedRows = FileRowLoader.loadFileToRows(filePath);
         //then
-        assertThat(loadedRows.size()).isEqualTo(4);
+        assertThat(loadedRows.size()).isEqualTo(3);
         assertThat(loadedRows).contains(expectedRow1);
-        assertThat(loadedRows).contains(expectedRow2);
     }
 
 }

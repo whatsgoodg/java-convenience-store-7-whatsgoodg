@@ -1,6 +1,7 @@
 package store.back.repository.loader;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import store.back.domain.product.Promotion;
 
@@ -9,8 +10,10 @@ public class PromotionFileLoader {
 
     public static List<Promotion> loadPromotions() {
         List<List<String>> rows = FileRowLoader.loadFileToRows(promotionFilePath);
-
-        return rows.stream().map(PromotionFileLoader::mapRowToPromotion).toList();
+        List<Promotion> promotions = new ArrayList<>();
+        promotions.add(new Promotion("null", 1, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-01-01")));
+        promotions.addAll(rows.stream().map(PromotionFileLoader::mapRowToPromotion).toList());
+        return promotions.stream().toList();
     }
 
     private static Promotion mapRowToPromotion(final List<String> rows) {
