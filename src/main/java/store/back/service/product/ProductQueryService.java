@@ -3,7 +3,6 @@ package store.back.service.product;
 import camp.nextstep.edu.missionutils.DateTimes;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import store.back.domain.product.Product;
 import store.back.repository.ProductRepository;
@@ -14,7 +13,7 @@ public class ProductQueryService {
     public Optional<Product> findProductWithPromotion(final String name) {
         List<Product> findProducts = productRepository.findByName(name);
         Optional<Product> product = findProducts.stream()
-                .filter(findProduct -> !Objects.equals(findProduct.getPromotion().getName(), "null")).findFirst();
+                .filter(findProduct -> !findProduct.getPromotion().getName().equals("null")).findFirst();
         if (product.isEmpty()) {
             return product;
         }
@@ -34,7 +33,7 @@ public class ProductQueryService {
 
     public Optional<Product> findProductNoPromotion(final String name) {
         List<Product> findProducts = productRepository.findByName(name);
-        return findProducts.stream().filter(findProduct -> Objects.equals(findProduct.getPromotion().getName(), "null"))
+        return findProducts.stream().filter(findProduct -> findProduct.getPromotion().getName().equals("null"))
                 .findFirst();
     }
 
