@@ -77,7 +77,9 @@ public class Order {
     }
 
     private Double calculateMembershipAmount() {
-        return orderLines.stream().filter(orderLine -> orderLine.getOrderLineStatus() == OrderLineStatus.MEMBERSHIP)
-                .mapToDouble(OrderLine::getPrice).sum() * OrderLineStatus.MEMBERSHIP.getDiscountRate();
+        double membershipAmount =
+                orderLines.stream().filter(orderLine -> orderLine.getOrderLineStatus() == OrderLineStatus.MEMBERSHIP)
+                        .mapToDouble(OrderLine::getPrice).sum() * OrderLineStatus.MEMBERSHIP.getDiscountRate();
+        return Math.min(membershipAmount, 8000.0);
     }
 }

@@ -61,7 +61,17 @@ class OrderTest {
                                 List.of(
                                         new FreebieProduct("초코바", 2),
                                         new FreebieProduct("콜라", 2)), 12000, 11,
-                                4400, 360, 7240))
+                                4400, 360, 7240)),
+                        Arguments.of(
+                                List.of(
+                                        new OrderLine("컵라면", 11, 18700, OrderLineStatus.MEMBERSHIP),
+                                        new OrderLine("정식도시락", 3, 19200, OrderLineStatus.MEMBERSHIP)),
+                                new Invoice(List.of(
+                                        new OrderedProduct("컵라면", 11, 18700),
+                                        new OrderedProduct("정식도시락", 3, 19200)),
+                                        List.of(), 37900, 14,
+                                        0, 8000, 29900)
+                        )
         );
     }
 }
