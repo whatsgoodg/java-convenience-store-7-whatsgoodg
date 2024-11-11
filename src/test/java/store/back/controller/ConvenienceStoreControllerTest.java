@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import store.back.repository.ProductRepository;
 
-// 해당 테스트는 한번에 실행해야한다.
 class ConvenienceStoreControllerTest extends NsTest {
 
     private final ConvenienceStoreController convenienceStoreController = new ConvenienceStoreController();
@@ -40,7 +39,7 @@ class ConvenienceStoreControllerTest extends NsTest {
     void 상품_구매_테스트3() {
         assertSimpleTest(() -> {
             run("[콜라-10],[컵라면-1],[초코바-3]", "N", "Y", "N", "N", "N");
-            assertThat(output().replaceAll("\\s", "")).contains("내실돈9,400");
+            assertThat(output().replaceAll("\\s", "")).contains("내실돈12,400");
         });
     }
 

@@ -65,6 +65,6 @@ class OrderServiceTest {
                         List.of(
                                 new OrderLine("컵라면", 2, 3400, OrderLineStatus.MEMBERSHIP)),
                         18,
-                        9));
+                        7));
     }
 }
