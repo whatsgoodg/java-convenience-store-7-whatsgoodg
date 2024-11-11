@@ -6,7 +6,8 @@ public class OrderLine {
     private final Integer price;
     private OrderLineStatus orderLineStatus;
 
-    public OrderLine(final String productName, final Integer quantity, final Integer price, final OrderLineStatus orderLineStatus) {
+    public OrderLine(final String productName, final Integer quantity, final Integer price,
+                     final OrderLineStatus orderLineStatus) {
         this.productName = productName;
         this.quantity = quantity;
         this.price = price;
