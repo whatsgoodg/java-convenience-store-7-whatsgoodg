@@ -23,16 +23,9 @@ public class ConvenienceStoreController {
     private final OrderFacade orderFacade = new OrderFacade();
 
     public void run() {
-        while (true) {
-            try {
-                purchaseAndOrder();
-                if (!readRetry()) {
-                    break;
-                }
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
+        do {
+            purchaseAndOrder();
+        } while (readRetry());
     }
 
     public void purchaseAndOrder() {
