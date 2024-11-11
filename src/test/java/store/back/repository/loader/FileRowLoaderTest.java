@@ -12,7 +12,7 @@ class FileRowLoaderTest {
     @DisplayName("product.md 파일의 모든 row를 가져오는 테스트")
     void 파일_로드_테스트1() {
         //given
-        String filePath = "src/main/resources/products.md";
+        String filePath = "products.md";
         // 맨 윗줄과 마지막 줄을 포함하는지
         List<String> expectedRow1 = List.of("콜라", "1000", "10", "탄산2+1");
         List<String> expectedRow2 = List.of("컵라면", "1700", "10", "null");
@@ -28,7 +28,7 @@ class FileRowLoaderTest {
     @DisplayName("promotions.md 의 모든 row를 가져오는 테스트")
     void 파일_로드_테스트2() {
         //given
-        String filePath = "src/main/resources/promotions.md";
+        String filePath = "promotions.md";
         // 맨 윗줄과 마지막 줄을 포함하는지
         List<String> expectedRow1 = List.of("탄산2+1", "2", "1", "2024-01-01", "2024-12-31");
         List<String> expectedRow2 = List.of("null", "1", "1", "2024-01-01", "2024-01-01");

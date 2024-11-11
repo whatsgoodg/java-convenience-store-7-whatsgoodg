@@ -10,7 +10,7 @@ import store.back.domain.product.Product;
 import store.back.domain.product.Promotion;
 
 public class ProductFileLoader {
-    private static final String productFilePath = "src/main/resources/products.md";
+    private static final String productFilePath = "products.md";
     private static final List<Promotion> promotions = PromotionFileLoader.loadPromotions();
 
     public static Map<Integer, Product> loadProducts() {

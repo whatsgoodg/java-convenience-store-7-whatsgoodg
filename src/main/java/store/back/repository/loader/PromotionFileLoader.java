@@ -5,7 +5,7 @@ import java.util.List;
 import store.back.domain.product.Promotion;
 
 public class PromotionFileLoader {
-    private static final String promotionFilePath = "src/main/resources/promotions.md";
+    private static final String promotionFilePath = "promotions.md";
 
     public static List<Promotion> loadPromotions() {
         List<List<String>> rows = FileRowLoader.loadFileToRows(promotionFilePath);
