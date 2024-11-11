@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import store.back.domain.product.Product;
@@ -15,10 +16,10 @@ public class ProductFileLoader {
 
     public static Map<Integer, Product> loadProducts() {
         List<List<String>> rows = FileRowLoader.loadFileToRows(productFilePath);
-
-        List<Product> products = IntStream.range(0, rows.size()).mapToObj(i -> mapRowToProduct(rows.get(i), i + 1))
-                .toList();
-        return products.stream().collect(Collectors.toMap(Product::getId, product -> product));
+        List<List<String>> addedRows = addNonExistedProductRows(rows);
+        List<Product> loadedProducts = IntStream.range(0, addedRows.size())
+                .mapToObj(i -> mapRowToProduct(addedRows.get(i), i + 1)).toList();
+        return loadedProducts.stream().collect(Collectors.toMap(Product::getId, product -> product));
     }
 
     private static Product mapRowToProduct(final List<String> rows, Integer id) {
@@ -40,5 +41,18 @@ public class ProductFileLoader {
             throw new IllegalArgumentException("해당 이름의 promotion이 존재하지 않습니다.");
         }
         return findPromotion.get();
+    }
+
+    private static List<List<String>> addNonExistedProductRows(List<List<String>> rows) {
+        Stack<List<String>> stack = new Stack<>();
+        stack.add(rows.getFirst());
+        IntStream.range(1, rows.size()).forEach(i -> {
+            List<String> first = stack.getFirst();
+            if (!first.getFirst().equals(rows.get(i).getFirst()) && !first.getLast().equals("null")) {
+                stack.addFirst(List.of(first.getFirst(), first.get(1), "0", "null"));
+            }
+            stack.addFirst(rows.get(i));
+        });
+        return stack.stream().toList().reversed();
     }
 }
