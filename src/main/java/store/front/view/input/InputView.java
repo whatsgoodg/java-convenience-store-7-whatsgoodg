@@ -93,6 +93,7 @@ public class InputView {
     public Boolean promptRetry() {
         System.out.println(InputMessage.RETRY.getMessage());
         String input = Console.readLine();
+        System.out.println();
         return YNParser.parse(input);
     }
 
