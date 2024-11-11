@@ -2,6 +2,7 @@ package store.front.builder.input;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import store.global.dto.response.purchase.PromotionalProductInfo;
@@ -12,7 +13,7 @@ class PromotionalProductMessageBuilderTest {
     @DisplayName("프로모션이 적용되는 상품에 대해 입력 메시지 생성 테스트")
     void 프로모션_증정_상품_입력_메시지_생성() {
         //given
-        PromotionalProductInfo promotionalProductInfo = new PromotionalProductInfo("콜라", 1);
+        List<PromotionalProductInfo> promotionalProductInfo = List.of(new PromotionalProductInfo("콜라", 1));
         //when
         String builtMessage = PromotionalProductMessageBuilder.build(promotionalProductInfo);
         //then

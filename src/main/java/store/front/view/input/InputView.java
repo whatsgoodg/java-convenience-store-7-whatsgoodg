@@ -45,10 +45,12 @@ public class InputView {
     }
 
     private void promptUserForPromotion(final List<PromotionalProductInfo> promotionalProductInfos) {
+        if (promotionalProductInfos.isEmpty()) {
+            return;
+        }
+        System.out.println(PromotionalProductMessageBuilder.build(promotionalProductInfos));
+        Boolean isYes = readYesOrNo();
         promotionalProductInfos.forEach(promotionalProductInfo -> {
-            System.out.println(PromotionalProductMessageBuilder.build(promotionalProductInfo));
-            Boolean isYes = readYesOrNo();
-
             if (isYes) {
                 shoppingCart.increaseQuantity(promotionalProductInfo.name(), promotionalProductInfo.quantity());
             }
@@ -56,10 +58,12 @@ public class InputView {
     }
 
     private void promptUserForNonPromotion(final List<NonPromotionalProductInfo> nonPromotionalProductInfos) {
+        if (nonPromotionalProductInfos.isEmpty()) {
+            return;
+        }
+        System.out.println(NonPromotionalProductMessageBuilder.build(nonPromotionalProductInfos));
+        Boolean isYes = readYesOrNo();
         nonPromotionalProductInfos.forEach(nonPromotionalProductInfo -> {
-            System.out.println(NonPromotionalProductMessageBuilder.build(nonPromotionalProductInfo));
-            Boolean isYes = readYesOrNo();
-
             if (!isYes) {
                 shoppingCart.decreaseQuantity(nonPromotionalProductInfo.name(), nonPromotionalProductInfo.quantity());
             }

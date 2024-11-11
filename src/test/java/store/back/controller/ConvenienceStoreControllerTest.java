@@ -30,7 +30,7 @@ class ConvenienceStoreControllerTest extends NsTest {
     @Test
     void 상품_구매_테스트2() {
         assertSimpleTest(() -> {
-            run("[콜라-10],[컵라면-10],[탄산수-3]", "Y", "Y", "Y", "N");
+            run("[콜라-10],[컵라면-10],[탄산수-3]", "Y", "Y", "N");
             assertThat(output().replaceAll("\\s", "")).contains("내실돈21,000");
         });
     }
@@ -38,8 +38,8 @@ class ConvenienceStoreControllerTest extends NsTest {
     @Test
     void 상품_구매_테스트3() {
         assertSimpleTest(() -> {
-            run("[콜라-10],[컵라면-1],[초코바-3]", "N", "Y", "N", "N", "N");
-            assertThat(output().replaceAll("\\s", "")).contains("내실돈12,400");
+            run("[콜라-10],[컵라면-1],[초코바-3]", "N", "Y", "N", "N");
+            assertThat(output().replaceAll("\\s", "")).contains("내실돈14,100");
         });
     }
 
