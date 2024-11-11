@@ -23,9 +23,14 @@ public class ConvenienceStoreController {
     private final OrderFacade orderFacade = new OrderFacade();
 
     public void run() {
-        do {
-            purchaseAndOrder();
-        } while (readRetry());
+        boolean isRetry = true;
+        while (isRetry) {
+            try {
+                purchaseAndOrder();
+                isRetry = readRetry();
+            } catch (IllegalArgumentException ignore) {
+            }
+        }
     }
 
     public void purchaseAndOrder() {
