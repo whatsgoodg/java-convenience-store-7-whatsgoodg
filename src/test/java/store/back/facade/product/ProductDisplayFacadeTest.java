@@ -3,13 +3,20 @@ package store.back.facade.product;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import store.back.repository.ProductRepository;
 import store.global.dto.response.display.ProductDisplayResponseDTO;
 import store.global.dto.response.display.ProductInfo;
 
 class ProductDisplayFacadeTest {
     private final ProductDisplayFacade productDisplayFacade = new ProductDisplayFacade();
+
+    @BeforeEach
+    void setUp(){
+        ProductRepository.loadAgain();
+    }
 
     @Test
     @DisplayName("모든 상품 정보를 반환하는 테스트")

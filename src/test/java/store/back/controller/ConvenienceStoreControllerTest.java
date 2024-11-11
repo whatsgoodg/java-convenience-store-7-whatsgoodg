@@ -6,12 +6,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.time.LocalDate;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import store.back.repository.ProductRepository;
 
 // 해당 테스트는 한번에 실행해야한다.
 class ConvenienceStoreControllerTest extends NsTest {
 
     private final ConvenienceStoreController convenienceStoreController = new ConvenienceStoreController();
+
+    @BeforeEach
+    void setUp(){
+        ProductRepository.loadAgain();
+    }
 
     @Test
     void 상품_구매_테스트1() {
@@ -33,14 +40,14 @@ class ConvenienceStoreControllerTest extends NsTest {
     void 상품_구매_테스트3() {
         assertSimpleTest(() -> {
             run("[콜라-10],[컵라면-1],[초코바-3]", "N", "Y", "N", "N", "N");
-            assertThat(output().replaceAll("\\s", "")).contains("내실돈12,400");
+            assertThat(output().replaceAll("\\s", "")).contains("내실돈9,400");
         });
     }
 
     @Test
     void 상품_구매_예외_테스트3() {
         assertSimpleTest(() -> {
-            runException("[콜라-20],[컵라면-1],[초코바-3]", "N", "N");
+            runException("[콜라-21],[컵라면-1],[초코바-4]", "N", "N");
             assertThat(output()).contains("[ERROR] 재고 수량을 초과하여 구매할 수 없습니다. 다시 입력해 주세요.");
         });
     }

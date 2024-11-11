@@ -4,15 +4,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import store.back.repository.ProductRepository;
 import store.global.dto.request.purchase.PurchaseProductInfo;
 import store.global.dto.response.purchase.NonPromotionalProductInfo;
 
 class NonPromotionCheckServiceTest {
     private final NonPromotionCheckService nonPromotionCheckService = new NonPromotionCheckService();
+
+    @BeforeEach
+    void setUp(){
+        ProductRepository.loadAgain();
+    }
 
     @ParameterizedTest
     @MethodSource("fullPriceProductInfoParams")

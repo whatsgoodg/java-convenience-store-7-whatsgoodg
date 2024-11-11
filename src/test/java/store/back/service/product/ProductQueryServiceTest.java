@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,10 +15,16 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import store.back.domain.product.Product;
 import store.back.domain.product.Promotion;
+import store.back.repository.ProductRepository;
 
 class ProductQueryServiceTest {
 
     private final ProductQueryService productQueryService = new ProductQueryService();
+
+    @BeforeEach
+    void setUp(){
+        ProductRepository.loadAgain();
+    }
 
     @ParameterizedTest
     @MethodSource("findByNameParams")

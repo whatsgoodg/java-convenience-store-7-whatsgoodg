@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,6 +18,11 @@ import store.back.domain.product.Promotion;
 class ProductRepositoryTest {
 
     private final ProductRepository productRepository = new ProductRepository();
+
+    @BeforeEach
+    void setUp(){
+        ProductRepository.loadAgain();
+    }
 
     @ParameterizedTest
     @MethodSource("findAllParams")

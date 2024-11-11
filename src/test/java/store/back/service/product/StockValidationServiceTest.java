@@ -4,8 +4,10 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import store.back.repository.ProductRepository;
 import store.global.dto.request.purchase.PurchaseProductInfo;
 import store.global.exception.InvalidProductNameException;
 import store.global.exception.OutOfStockException;
@@ -14,6 +16,10 @@ class StockValidationServiceTest {
 
     private final StockValidationService stockValidationService = new StockValidationService();
 
+    @BeforeEach
+    void setUp(){
+        ProductRepository.loadAgain();
+    }
     @Test
     @DisplayName("구매할 상품이 존재하지 않을 때 예외 발생")
     void 구매상품_존재하지않음_예외_테스트() {

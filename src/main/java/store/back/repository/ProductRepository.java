@@ -4,12 +4,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import store.back.domain.product.Product;
 import store.back.repository.loader.ProductFileLoader;
 
 public class ProductRepository {
-    private static final Map<Integer, Product> products = ProductFileLoader.loadProducts();
+    private static Map<Integer, Product> products = ProductFileLoader.loadProducts();
 
     public List<Product> findAll() {
         return products.entrySet().stream().sorted(Map.Entry.comparingByKey()).map(Map.Entry::getValue).toList();
@@ -36,5 +35,9 @@ public class ProductRepository {
         }
 
         return Optional.of(product);
+    }
+
+    public static void loadAgain() {
+        products = ProductFileLoader.loadProducts();
     }
 }
