@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,8 +19,8 @@ class ProductRepositoryTest {
 
     private final ProductRepository productRepository = new ProductRepository();
 
-    @BeforeEach
-    void setUp(){
+    @BeforeAll
+    static void setUp(){
         ProductRepository.loadAgain();
     }
 

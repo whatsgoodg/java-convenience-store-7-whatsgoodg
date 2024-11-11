@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.Stream;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -17,8 +17,8 @@ class PromotionCheckServiceTest {
 
     private final PromotionCheckService promotionCheckService = new PromotionCheckService();
 
-    @BeforeEach
-    void setUp(){
+    @BeforeAll
+    static void setUp(){
         ProductRepository.loadAgain();
     }
 
