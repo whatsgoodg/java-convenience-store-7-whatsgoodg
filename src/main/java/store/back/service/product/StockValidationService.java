@@ -1,9 +1,6 @@
 package store.back.service.product;
 
 import java.util.List;
-import java.util.Optional;
-import store.back.domain.order.OrderLine;
-import store.back.domain.order.OrderLineStatus;
 import store.back.domain.product.Product;
 import store.global.dto.request.purchase.PurchaseProductInfo;
 import store.global.exception.InvalidProductNameException;
