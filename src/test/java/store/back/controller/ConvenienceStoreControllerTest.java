@@ -52,10 +52,18 @@ class ConvenienceStoreControllerTest extends NsTest {
     }
 
     @Test
-    void 기간에_해당하지_않는_프로모션_적용() {
+    void 기간에_해당하지_않는_프로모션_적용1() {
         assertNowTest(() -> {
             run("[오렌지주스-9],[탄산수-2],[초코바-2]", "N", "N");
             assertThat(output().replaceAll("\\s", "")).contains("내실돈21,000");
+        }, LocalDate.of(2023, 2, 1).atStartOfDay());
+    }
+
+    @Test
+    void 기간에_해당하지_않는_프로모션_적용2() {
+        assertNowTest(() -> {
+            run("[오렌지주스-4],[사이다-7],[초코바-2]", "Y", "N");
+            assertThat(output().replaceAll("\\s", "")).contains("내실돈11,620g");
         }, LocalDate.of(2023, 2, 1).atStartOfDay());
     }
 
