@@ -9,7 +9,7 @@ import java.util.List;
 
 public class FileRowLoader {
 
-    static List<List<String>> loadFileToRows(String filePath) {
+    static List<List<String>> loadFileToRows(final String filePath) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
             return readAllRows(bufferedReader);
         } catch (IOException e) {
@@ -17,7 +17,7 @@ public class FileRowLoader {
         }
     }
 
-    private static List<List<String>> readAllRows(BufferedReader bufferedReader) throws IOException {
+    private static List<List<String>> readAllRows(final BufferedReader bufferedReader) throws IOException {
         List<List<String>> rows = new ArrayList<>();
         String line;
         bufferedReader.readLine(); // 첫 줄을 날림

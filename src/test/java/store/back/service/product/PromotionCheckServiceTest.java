@@ -18,8 +18,8 @@ class PromotionCheckServiceTest {
     @ParameterizedTest
     @MethodSource("promotionalProductsParams")
     @DisplayName("구매한 수량에 대해 증정을 받을 수 있을 때 받을 수 있는 상품 정보 반환")
-    void 프로모션으로_증정_가능한_상품정보_반환(List<PurchaseProductInfo> purchaseProductInfos,
-                               List<PromotionalProductInfo> expectedPromotionalProductInfos) {
+    void 프로모션으로_증정_가능한_상품정보_반환(final List<PurchaseProductInfo> purchaseProductInfos,
+                               final List<PromotionalProductInfo> expectedPromotionalProductInfos) {
         //given
         List<PromotionalProductInfo> promotionalProductInfos = promotionCheckService.getPromotionalProductInfos(
                 purchaseProductInfos);

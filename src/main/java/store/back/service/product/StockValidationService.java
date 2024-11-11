@@ -12,12 +12,12 @@ import store.global.exception.OutOfStockException;
 public class StockValidationService {
     private final ProductQueryService productQueryService = new ProductQueryService();
 
-    public void validatePurchasable(List<PurchaseProductInfo> purchaseProductInfos) {
+    public void validatePurchasable(final List<PurchaseProductInfo> purchaseProductInfos) {
         purchaseProductInfos.forEach(this::validateProductName);
         purchaseProductInfos.forEach(this::validateStocks);
     }
 
-    private void validateProductName(PurchaseProductInfo purchaseProductInfo) {
+    private void validateProductName(final PurchaseProductInfo purchaseProductInfo) {
         List<Product> products = productQueryService.findByName(purchaseProductInfo.name());
 
         if (products.isEmpty()) {
@@ -25,7 +25,7 @@ public class StockValidationService {
         }
     }
 
-    private void validateStocks(PurchaseProductInfo PurchaseProductInfo) {
+    private void validateStocks(final PurchaseProductInfo PurchaseProductInfo) {
         List<Product> products = productQueryService.findByName(PurchaseProductInfo.name());
 
         int totalQuantity = products.stream().mapToInt(Product::getQuantity).sum();
@@ -33,13 +33,4 @@ public class StockValidationService {
             throw new OutOfStockException();
         }
     }
-
-//    public void validateOrderLines(OrderLine orderLine) {
-//        Optional<Product> productWithPromotion = productQueryService.findProductWithPromotion(
-//                orderLine.getProductName());
-//        Optional<Product> productNoPromotion = productQueryService.findProductNoPromotion(
-//                orderLine.getProductName());
-//        Integer promotionQuantity = productWithPromotion.map(Product::getQuantity).orElse(0);
-//        Integer noPromotionQuantity = productNoPromotion.map(Product::getQuantity).orElse(0);
-//    }
 }

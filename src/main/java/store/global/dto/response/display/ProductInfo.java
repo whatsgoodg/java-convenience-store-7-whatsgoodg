@@ -4,7 +4,7 @@ import store.back.domain.product.Product;
 
 public record ProductInfo(String name, Integer price, Integer quantity, String promotionName) {
 
-    public static ProductInfo from(Product product) {
+    public static ProductInfo from(final Product product) {
         return new ProductInfo(
                 product.getName(),
                 product.getPrice(),

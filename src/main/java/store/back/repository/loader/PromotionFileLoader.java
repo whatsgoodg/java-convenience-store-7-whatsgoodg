@@ -13,7 +13,7 @@ public class PromotionFileLoader {
         return rows.stream().map(PromotionFileLoader::mapRowToPromotion).toList();
     }
 
-    private static Promotion mapRowToPromotion(List<String> rows) {
+    private static Promotion mapRowToPromotion(final List<String> rows) {
         if (rows.size() != Promotion.class.getDeclaredFields().length) {
             throw new IllegalArgumentException("Promotion의 필드 개수와 column 개수가 동일하지 않습니다.");
         }

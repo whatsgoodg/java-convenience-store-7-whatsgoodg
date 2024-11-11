@@ -11,7 +11,7 @@ public class PurchaseProductInfoParser {
     private static final String PURCHASE_PRODUCTS_REGEX = "^\\[([가-힣]+)-([1-9]\\d*)](,\\[([가-힣]+)-([1-9]\\d*)])*$";
     private static final Pattern PURCHASE_PRODUCT_PATTERN = Pattern.compile(",?\\[([가-힣]+)-([1-9]\\d*)]");
 
-    public static List<PurchaseProductInfo> parse(String input) {
+    public static List<PurchaseProductInfo> parse(final String input) {
         validate(input);
         Matcher matcher = PURCHASE_PRODUCT_PATTERN.matcher(input);
 
@@ -24,7 +24,7 @@ public class PurchaseProductInfoParser {
         return purchaseProductInfos.stream().toList();
     }
 
-    private static void validate(String input) {
+    private static void validate(final String input) {
         if (!input.matches(PURCHASE_PRODUCTS_REGEX)) {
             throw new InvalidProductInputException();
         }

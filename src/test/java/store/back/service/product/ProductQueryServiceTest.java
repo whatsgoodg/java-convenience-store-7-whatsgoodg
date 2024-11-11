@@ -22,7 +22,7 @@ class ProductQueryServiceTest {
     @ParameterizedTest
     @MethodSource("findByNameParams")
     @DisplayName("findByName() 매서드 테스트")
-    void 이름을_사용하여_프로덕트_객체_반환(String name, Product product1, Product product2) {
+    void 이름을_사용하여_프로덕트_객체_반환(final String name, final Product product1, final Product product2) {
         //given
         //when
         List<Product> products = productQueryService.findByName(name);
@@ -32,16 +32,19 @@ class ProductQueryServiceTest {
     }
 
     private static Stream<Arguments> findByNameParams() {
-        return Stream.of(Arguments.of("콜라", new Product(1, "콜라", 1000, 10,
-                        new Promotion("탄산2+1", 2, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-12-31"))),
-                new Product(2, "콜라", 1000, 10,
-                        new Promotion("null", 1, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-01-01")))));
+        return Stream.of(
+                Arguments.of(
+                        "콜라",
+                        new Product(1, "콜라", 1000, 10,
+                                new Promotion("탄산2+1", 2, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-12-31"))),
+                        new Product(2, "콜라", 1000, 10,
+                                new Promotion("null", 1, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-01-01")))));
     }
 
     @ParameterizedTest
     @MethodSource("productWithPromotionParams")
     @DisplayName("findProductWithPromotion() 매서드를 통해 프로모션이 존재하는 Product 객체 반환 테스트")
-    void 이름을_사용하여_프로모션이_존재하는_프로덕트_객체_반환(String name, Product product) {
+    void 이름을_사용하여_프로모션이_존재하는_프로덕트_객체_반환(final String name, final Product product) {
         //given
         //when
         Optional<Product> productsWithPromotion = productQueryService.findProductWithPromotion(name);
@@ -51,14 +54,17 @@ class ProductQueryServiceTest {
     }
 
     private static Stream<Arguments> productWithPromotionParams() {
-        return Stream.of(Arguments.of("콜라", new Product(1, "콜라", 1000, 10,
-                new Promotion("탄산2+1", 2, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-12-31")))));
+        return Stream.of(
+                Arguments.of(
+                        "콜라",
+                        new Product(1, "콜라", 1000, 10,
+                                new Promotion("탄산2+1", 2, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-12-31")))));
     }
 
     @ParameterizedTest
     @MethodSource("noPromotionProductParams")
     @DisplayName("findProductWithPromotion() 매서드를 통해 프로모션이 없을 경우 빈 Optional 객체 반환 테스트")
-    void 이름을_사용하여_프로모션이_없을경우_빈_Optioanl_반환(String name) {
+    void 이름을_사용하여_프로모션이_없을경우_빈_Optioanl_반환(final String name) {
         //given
         //when
         Optional<Product> productsWithPromotion = productQueryService.findProductWithPromotion(name);

@@ -13,18 +13,18 @@ public class ShoppingCart {
         this.isMembership = false;
     }
 
-    public void save(String name, Integer quantity) {
+    public void save(final String name, final Integer quantity) {
         productInfos.put(name, quantity);
     }
 
-    public void increaseQuantity(String name, Integer quantity) {
+    public void increaseQuantity(final String name, final Integer quantity) {
         if (!productInfos.containsKey(name)) {
             throw new InvalidProductNameException("상품이 장바구니에 존재하지 않습니다.");
         }
         productInfos.put(name, productInfos.get(name) + quantity);
     }
 
-    public void decreaseQuantity(String name, Integer quantity) {
+    public void decreaseQuantity(final String name, final Integer quantity) {
         if (!productInfos.containsKey(name)) {
             throw new InvalidProductNameException("상품이 장바구니에 존재하지 않습니다.");
         }

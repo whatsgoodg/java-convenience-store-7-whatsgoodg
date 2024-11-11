@@ -21,7 +21,7 @@ class ProductRepositoryTest {
     @ParameterizedTest
     @MethodSource("findAllParams")
     @DisplayName("findAll() 매서드를 통한 모든 객체 불러오기")
-    void 모든_객체_반환_테스트(Product product1, Product product2) {
+    void 모든_객체_반환_테스트(final Product product1, final Product product2) {
         //given
         //when
         List<Product> products = productRepository.findAll();
@@ -41,7 +41,7 @@ class ProductRepositoryTest {
     @ParameterizedTest
     @MethodSource("findByNameParams")
     @DisplayName("findByName() 매서드를 통한 특정 객체 불러오기")
-    void 이름을_통한_객체_반환_테스트1(Product product1, Product product2) {
+    void 이름을_통한_객체_반환_테스트1(final Product product1, final Product product2) {
         //given
         String name = "콜라";
         //when
@@ -73,7 +73,7 @@ class ProductRepositoryTest {
     @ParameterizedTest
     @MethodSource("saveParams")
     @DisplayName("save() 매서드를 통한 특정 객체 저장")
-    void 객쳬_저장_테스트(Product product) {
+    void 객쳬_저장_테스트(final Product product) {
         //given
         //when
         product.decreaseQuantity(5);
@@ -86,13 +86,13 @@ class ProductRepositoryTest {
     private static Stream<Arguments> saveParams() {
         return Stream.of(Arguments.of(
                 new Product(1, "콜라", 1000, 10,
-                new Promotion("탄산2+1", 2, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-12-31")))));
+                        new Promotion("탄산2+1", 2, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-12-31")))));
     }
 
     @ParameterizedTest
     @MethodSource("saveExceptionParams")
     @DisplayName("저장하려는 Product 객체의 특정 id가 존재하지 않을 때 예외 발생")
-    void 객쳬_저장_예외_테스트(Product product) {
+    void 객쳬_저장_예외_테스트(final Product product) {
         //given
         //when
         //then
@@ -102,13 +102,13 @@ class ProductRepositoryTest {
     private static Stream<Arguments> saveExceptionParams() {
         return Stream.of(Arguments.of(
                 new Product(19, "콜라", 1000, 10,
-                new Promotion("탄산2+1", 2, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-12-31")))));
+                        new Promotion("탄산2+1", 2, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-12-31")))));
     }
 
     @ParameterizedTest
     @MethodSource("findByIdParams")
     @DisplayName("findById() 매서드를 통한 특정 불러오기")
-    void 아이디를_통한_객체_반환_테스트(Product product) {
+    void 아이디를_통한_객체_반환_테스트(final Product product) {
         //given
         //when
         Optional<Product> findProduct = productRepository.findById(product.getId());
@@ -120,7 +120,7 @@ class ProductRepositoryTest {
     private static Stream<Arguments> findByIdParams() {
         return Stream.of(Arguments.of(
                 new Product(1, "콜라", 1000, 10,
-                new Promotion("탄산2+1", 2, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-12-31")))));
+                        new Promotion("탄산2+1", 2, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-12-31")))));
     }
 
     @Test

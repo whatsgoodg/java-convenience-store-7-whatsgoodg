@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class Repeater {
-    public void executeNoReturn(Runnable action, Consumer<String> errorHandler) {
+    public void executeNoReturn(final Runnable action, final Consumer<String> errorHandler) {
         while (true) {
             try {
                 action.run();
@@ -15,7 +15,7 @@ public class Repeater {
         }
     }
 
-    public <T> T executeWithReturn(Supplier<T> supplier, Consumer<String> errorHandler) {
+    public <T> T executeWithReturn(final Supplier<T> supplier, final Consumer<String> errorHandler) {
         while (true) {
             try {
                 return supplier.get();

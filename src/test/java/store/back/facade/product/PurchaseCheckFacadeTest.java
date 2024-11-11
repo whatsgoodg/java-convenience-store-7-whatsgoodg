@@ -23,8 +23,8 @@ class PurchaseCheckFacadeTest {
     @ParameterizedTest
     @MethodSource("productFacadeParams")
     @DisplayName("사용자가 구매 목록을 전달하면 이에 검증, 따른 증정 가능 상품, 정가 구매 상품을 보여줌")
-    void 사용자_구매_확인_통합_테스트(PurchaseCheckRequestDTO purchaseCheckRequestDTO,
-                          PurchaseCheckResponseDTO expecTedPurchaseCheckResponseDTO) {
+    void 사용자_구매_확인_통합_테스트(final PurchaseCheckRequestDTO purchaseCheckRequestDTO,
+                          final PurchaseCheckResponseDTO expecTedPurchaseCheckResponseDTO) {
         //give
         //when
         PurchaseCheckResponseDTO purchaseCheckResponseDTO = purchaseCheckFacade.checkPurchaseConditions(
@@ -65,7 +65,8 @@ class PurchaseCheckFacadeTest {
     @ParameterizedTest
     @MethodSource("productFacadeExceptionParams")
     @DisplayName("사용자가 구매 목록을 전달했을 때 상품이 존재하지 않거나 수량이 부족한 경우 예외")
-    void 사용자_구매_예외_테스트(PurchaseCheckRequestDTO purchaseCheckRequestDTO, IllegalArgumentException exception) {
+    void 사용자_구매_예외_테스트(final PurchaseCheckRequestDTO purchaseCheckRequestDTO,
+                       final IllegalArgumentException exception) {
         //give
         //when
         assertThatThrownBy(() -> purchaseCheckFacade.checkPurchaseConditions(

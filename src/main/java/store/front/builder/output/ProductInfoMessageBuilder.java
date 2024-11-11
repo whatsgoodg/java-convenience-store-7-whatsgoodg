@@ -8,7 +8,7 @@ import store.global.enums.OutputMessage;
 public class ProductInfoMessageBuilder {
     private static final String NEW_LINE = "\n";
 
-    public static String build(List<ProductInfo> productInfos) {
+    public static String build(final List<ProductInfo> productInfos) {
         StringBuilder stringBuilder = new StringBuilder();
 
         productInfos.forEach(productInfo -> {
@@ -18,7 +18,7 @@ public class ProductInfoMessageBuilder {
         return stringBuilder.toString();
     }
 
-    private static String parseOutputMessage(ProductInfo productInfo) {
+    private static String parseOutputMessage(final ProductInfo productInfo) {
         String name = productInfo.name();
         Integer quantity = productInfo.quantity();
         String price = String.format("%,d", productInfo.price());
@@ -30,7 +30,7 @@ public class ProductInfoMessageBuilder {
         return String.format(OutputMessage.PRODUCT_INFO_IN_STOCK.getMessage(), name, price, quantity, promotion);
     }
 
-    private static String parsePromotionName(String promotionName) {
+    private static String parsePromotionName(final String promotionName) {
         if (Objects.equals(promotionName, "null")) {
             return "";
         }

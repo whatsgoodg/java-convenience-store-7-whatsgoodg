@@ -13,7 +13,7 @@ public class OrderFacade {
     private final OrderService orderService = new OrderService();
     private final OrderLineService orderLineService = new OrderLineService();
 
-    public OrderResponseDTO orderProducts(OrderRequestDTO orderRequestDTO) {
+    public OrderResponseDTO orderProducts(final OrderRequestDTO orderRequestDTO) {
         List<OrderLine> orderLines = orderLineService.generateOrderLines(orderRequestDTO);
         Invoice invoice = orderService.orderProducts(orderLines);
         return new OrderResponseDTO(InvoiceInfo.from(invoice));

@@ -9,7 +9,8 @@ public class Promotion {
     private final LocalDate startDate;
     private final LocalDate endDate;
 
-    public Promotion(String name, Integer buy, Integer get, LocalDate startDate, LocalDate endDate) {
+    public Promotion(final String name, final Integer buy, final Integer get, final LocalDate startDate,
+                     final LocalDate endDate) {
         validatePromotionPeriod(startDate, endDate);
 
         this.name = name;
@@ -19,7 +20,7 @@ public class Promotion {
         this.endDate = endDate;
     }
 
-    private static void validatePromotionPeriod(LocalDate startDate, LocalDate endDate) {
+    private static void validatePromotionPeriod(final LocalDate startDate, final LocalDate endDate) {
         if (startDate.isAfter(endDate)) {
             throw new IllegalArgumentException("할인의 시작일이 종료일보다 더 나중입니다.");
         }

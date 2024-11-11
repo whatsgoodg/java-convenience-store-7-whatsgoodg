@@ -21,7 +21,7 @@ public class ProductFileLoader {
         return products.stream().collect(Collectors.toMap(Product::getId, product -> product));
     }
 
-    private static Product mapRowToProduct(List<String> rows, Integer id) {
+    private static Product mapRowToProduct(final List<String> rows, Integer id) {
         if (rows.size() + 1 != Product.class.getDeclaredFields().length) {
             throw new IllegalArgumentException("Promotion의 필드 개수와 column 개수가 동일하지 않습니다.");
         }
@@ -33,7 +33,7 @@ public class ProductFileLoader {
         return new Product(id, name, price, quantity, promotion);
     }
 
-    private static Promotion findPromotionByName(String name) {
+    private static Promotion findPromotionByName(final String name) {
         Optional<Promotion> findPromotion = promotions.stream()
                 .filter(promotion -> Objects.equals(promotion.getName(), name)).findFirst();
         if (findPromotion.isEmpty()) {

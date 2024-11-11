@@ -12,7 +12,7 @@ public record InvoiceInfo(
         Integer membershipAmount,
         Integer priceToPay) {
 
-    public static InvoiceInfo from(Invoice invoice) {
+    public static InvoiceInfo from(final Invoice invoice) {
         return new InvoiceInfo(
                 invoice.getOrderedProducts().stream().map(OrderedProductInfo::from).toList(),
                 invoice.getFreebieProducts().stream().map(FreebieProductInfo::from).toList(),

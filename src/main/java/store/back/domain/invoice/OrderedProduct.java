@@ -5,7 +5,7 @@ public class OrderedProduct {
     private final Integer quantity;
     private final Integer price;
 
-    public OrderedProduct(String name, Integer quantity, Integer price) {
+    public OrderedProduct(final String name, final Integer quantity, final Integer price) {
         this.name = name;
         this.quantity = quantity;
         this.price = price;

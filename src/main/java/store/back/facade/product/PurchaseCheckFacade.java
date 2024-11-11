@@ -15,7 +15,7 @@ public class PurchaseCheckFacade {
     private final NonPromotionCheckService nonPromotionCheckService = new NonPromotionCheckService();
     private final StockValidationService stockValidationService = new StockValidationService();
 
-    public PurchaseCheckResponseDTO checkPurchaseConditions(PurchaseCheckRequestDTO purchaseCheckRequestDTO) {
+    public PurchaseCheckResponseDTO checkPurchaseConditions(final PurchaseCheckRequestDTO purchaseCheckRequestDTO) {
         List<PurchaseProductInfo> purchaseProductInfos = purchaseCheckRequestDTO.purchaseProductInfos();
         stockValidationService.validatePurchasable(purchaseProductInfos);
 

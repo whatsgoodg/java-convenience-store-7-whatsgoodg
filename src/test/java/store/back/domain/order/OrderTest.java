@@ -17,7 +17,7 @@ class OrderTest {
     @ParameterizedTest
     @MethodSource("orderParams")
     @DisplayName("주문을 실행하고 이에 따른 영수증을 반환")
-    void 주문_수행_테스트(List<OrderLine> orderLines, Invoice expecteInvoice) {
+    void 주문_수행_테스트(final List<OrderLine> orderLines, final Invoice expecteInvoice) {
         //given
         //when
         Order order = new Order(orderLines);

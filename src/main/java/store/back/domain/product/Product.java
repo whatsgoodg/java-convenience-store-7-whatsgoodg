@@ -9,7 +9,8 @@ public class Product {
     private Integer quantity;
     private final Promotion promotion;
 
-    public Product(Integer id, String name, Integer price, Integer quantity, Promotion promotion) {
+    public Product(final Integer id, final String name, final Integer price, final Integer quantity,
+                   final Promotion promotion) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -17,7 +18,7 @@ public class Product {
         this.promotion = promotion;
     }
 
-    public void decreaseQuantity(Integer quantity) {
+    public void decreaseQuantity(final Integer quantity) {
         if (this.quantity - quantity < 0) {
             throw new OutOfStockException();
         }

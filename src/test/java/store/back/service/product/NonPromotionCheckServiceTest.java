@@ -17,8 +17,8 @@ class NonPromotionCheckServiceTest {
     @ParameterizedTest
     @MethodSource("fullPriceProductInfoParams")
     @DisplayName("상품을 구매할 때, 프로모션이 존재하는 상품은 있지만 수량이 적어 정가로 구매해야하는 상품을 반환하는 테스트")
-    void 상품_정가_구매_정보_반환_테스트(List<PurchaseProductInfo> purchaseProductInfos,
-                            List<NonPromotionalProductInfo> expectedNonPromotionalProductInfos) {
+    void 상품_정가_구매_정보_반환_테스트(final List<PurchaseProductInfo> purchaseProductInfos,
+                            final List<NonPromotionalProductInfo> expectedNonPromotionalProductInfos) {
         //given
         //when
         List<NonPromotionalProductInfo> nonPromotionalProductInfos = nonPromotionCheckService.getNonPromotionalProductInfos(

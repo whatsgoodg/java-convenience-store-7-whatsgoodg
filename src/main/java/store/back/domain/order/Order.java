@@ -19,7 +19,7 @@ public class Order {
         this.orderLines = orderLines;
     }
 
-    private void validate(List<OrderLine> orderLines) {
+    private void validate(final List<OrderLine> orderLines) {
         if (orderLines.isEmpty()) {
             throw new NoPurchaseProductException();
         }
@@ -38,7 +38,7 @@ public class Order {
                 memberShipAmount.intValue(), (int) (totalPrice - freebieAmount - memberShipAmount));
     }
 
-    private List<OrderedProduct> getOrderedProducts(Map<String, List<OrderLine>> orderLinesGroupedByName) {
+    private List<OrderedProduct> getOrderedProducts(final Map<String, List<OrderLine>> orderLinesGroupedByName) {
         List<OrderedProduct> orderedProducts = new ArrayList<>();
         for (Entry<String, List<OrderLine>> entry : orderLinesGroupedByName.entrySet()) {
             int summedQuantity = entry.getValue().stream().mapToInt(OrderLine::getQuantity).sum();
@@ -49,7 +49,7 @@ public class Order {
         return orderedProducts;
     }
 
-    private List<FreebieProduct> getFreebieProducts(Map<String, List<OrderLine>> orderLinesGroupedByName) {
+    private List<FreebieProduct> getFreebieProducts(final Map<String, List<OrderLine>> orderLinesGroupedByName) {
         List<FreebieProduct> freebieProducts = new ArrayList<>();
         for (Entry<String, List<OrderLine>> entry : orderLinesGroupedByName.entrySet()) {
             int summedQuantity = entry.getValue().stream()

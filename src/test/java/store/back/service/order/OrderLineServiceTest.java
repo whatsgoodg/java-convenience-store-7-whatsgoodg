@@ -20,7 +20,7 @@ class OrderLineServiceTest {
     @ParameterizedTest
     @MethodSource("orderLineCreateParams")
     @DisplayName("구매하고자 하는 상품에 대해 OrderLine들을 생성하는 테스트")
-    void 구매_물품_생성_테스트(OrderRequestDTO orderRequestDTO, List<OrderLine> expectedOrderLines) {
+    void 구매_물품_생성_테스트(final OrderRequestDTO orderRequestDTO, final List<OrderLine> expectedOrderLines) {
         //given
         //when
         List<OrderLine> orderLines = orderLineService.generateOrderLines(orderRequestDTO);

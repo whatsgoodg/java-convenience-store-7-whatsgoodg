@@ -15,7 +15,8 @@ class ProductTest {
     @ParameterizedTest
     @MethodSource("validPromotionParams")
     @DisplayName("Product 객체 생성 테스트")
-    void 객체_생성_테스트(String promotionName, Integer buy, Integer get, LocalDate startDate, LocalDate endDate) {
+    void 객체_생성_테스트(final String promotionName, final Integer buy, final Integer get, final LocalDate startDate,
+                   final LocalDate endDate) {
         //given
         String name = "asd";
         Integer price = 1000;
@@ -35,7 +36,8 @@ class ProductTest {
     @ParameterizedTest
     @MethodSource("validPromotionParams")
     @DisplayName("Product decreaseQuantity 테스트")
-    void 수량_감소_테스트(String promotionName, Integer buy, Integer get, LocalDate startDate, LocalDate endDate) {
+    void 수량_감소_테스트(final String promotionName, final Integer buy, final Integer get, final LocalDate startDate,
+                   final LocalDate endDate) {
         //given
         String name = "asd";
         Integer price = 1000;
@@ -51,7 +53,8 @@ class ProductTest {
     @ParameterizedTest
     @MethodSource("validPromotionParams")
     @DisplayName("Product decreaseQuantity 예외 테스트")
-    void 수량_감소_예외_테스트(String promotionName, Integer buy, Integer get, LocalDate startDate, LocalDate endDate) {
+    void 수량_감소_예외_테스트(final String promotionName, final Integer buy, final Integer get, final LocalDate startDate,
+                      final LocalDate endDate) {
         //given
         String name = "asd";
         Integer price = 1000;

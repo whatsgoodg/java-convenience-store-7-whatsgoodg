@@ -15,12 +15,12 @@ public class ProductRepository {
         return products.entrySet().stream().sorted(Map.Entry.comparingByKey()).map(Map.Entry::getValue).toList();
     }
 
-    public List<Product> findByName(String name) {
+    public List<Product> findByName(final String name) {
         List<Product> findProducts = findAll();
         return findProducts.stream().filter(product -> Objects.equals(product.getName(), name)).toList();
     }
 
-    public Product save(Product product) {
+    public Product save(final Product product) {
         if (!products.containsKey(product.getId())) {
             throw new IllegalArgumentException("해당 키를 가진 객체가 존재하지 않습니다.");
         }
@@ -29,7 +29,7 @@ public class ProductRepository {
         return products.get(product.getId());
     }
 
-    public Optional<Product> findById(Integer id) {
+    public Optional<Product> findById(final Integer id) {
         Product product = products.get(id);
         if (product == null) {
             return Optional.empty();

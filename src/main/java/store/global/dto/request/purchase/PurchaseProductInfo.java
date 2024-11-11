@@ -9,7 +9,7 @@ public record PurchaseProductInfo(String name, Integer quantity) {
         this.quantity = quantity;
     }
 
-    private void validate(Integer quantity) {
+    private void validate(final Integer quantity) {
         if (quantity < 1) {
             throw new InvalidPurchaseQuantityException();
         }

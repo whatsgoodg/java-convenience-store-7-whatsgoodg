@@ -38,10 +38,10 @@ class StockValidationServiceTest {
     @DisplayName("구매할 상품이 존재하고 수량이 적합할 때 아무일도 발생하지 않음")
     void 구매상품_존재_수량_존재_테스트() {
         //given
-        List<PurchaseProductInfo> purchaseProductInfos = List.of(
-                new PurchaseProductInfo("콜라", 5),
+        List<PurchaseProductInfo> purchaseProductInfos = List.of(new PurchaseProductInfo("콜라", 5),
                 new PurchaseProductInfo("물", 2));
         //when
-        assertThatCode(() -> stockValidationService.validatePurchasable(purchaseProductInfos)).doesNotThrowAnyException();
+        assertThatCode(
+                () -> stockValidationService.validatePurchasable(purchaseProductInfos)).doesNotThrowAnyException();
     }
 }

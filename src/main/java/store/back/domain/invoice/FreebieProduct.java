@@ -4,7 +4,7 @@ public class FreebieProduct {
     private final String name;
     private final Integer quantity;
 
-    public FreebieProduct(String name, Integer quantity) {
+    public FreebieProduct(final String name, final Integer quantity) {
         this.name = name;
         this.quantity = quantity;
     }

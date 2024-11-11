@@ -11,8 +11,9 @@ public class Invoice {
     private final Integer membershipAmount;
     private final Integer priceToPay;
 
-    public Invoice(List<OrderedProduct> orderedProducts, List<FreebieProduct> freebieProducts, Integer totalPrice,
-                   Integer totalQuantity, Integer freebieAmount, Integer membershipAmount, Integer priceToPay) {
+    public Invoice(final List<OrderedProduct> orderedProducts, final List<FreebieProduct> freebieProducts,
+                   final Integer totalPrice, final Integer totalQuantity, final Integer freebieAmount,
+                   final Integer membershipAmount, final Integer priceToPay) {
         this.orderedProducts = orderedProducts;
         this.freebieProducts = freebieProducts;
         this.totalPrice = totalPrice;

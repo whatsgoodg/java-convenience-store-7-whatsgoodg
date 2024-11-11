@@ -14,7 +14,8 @@ class PromotionTest {
     @ParameterizedTest
     @MethodSource("validPromotionParams")
     @DisplayName("List<String> 타입으로부터 객체를 생성")
-    void 객체_생성_테스트(String name, Integer buy, Integer get, LocalDate startDate, LocalDate endDate) {
+    void 객체_생성_테스트(final String name, final Integer buy, final Integer get, final LocalDate startDate,
+                   final LocalDate endDate) {
         //given
         //when
         Promotion promotion = new Promotion(name, buy, get, startDate, endDate);
@@ -33,7 +34,8 @@ class PromotionTest {
     @ParameterizedTest
     @MethodSource("invalidPromotionParams")
     @DisplayName("startDate가 endDate보다 더 나중일 때 예외 발생")
-    void 객체_생성_예외_테스트2(String name, Integer buy, Integer get, LocalDate startDate, LocalDate endDate) {
+    void 객체_생성_예외_테스트2(final String name, final Integer buy, final Integer get, final LocalDate startDate,
+                       final LocalDate endDate) {
         //given
         //when
         //then

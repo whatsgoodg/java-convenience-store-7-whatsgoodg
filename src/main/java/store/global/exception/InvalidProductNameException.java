@@ -7,7 +7,7 @@ public class InvalidProductNameException extends IllegalArgumentException {
         super(ExceptionMessage.PRODUCT_NAME_NOT_FOUND.getMessage());
     }
 
-    public InvalidProductNameException(String message) {
+    public InvalidProductNameException(final String message) {
         super(message);
     }
 }
