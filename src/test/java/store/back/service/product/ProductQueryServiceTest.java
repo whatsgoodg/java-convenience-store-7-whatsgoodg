@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,8 +21,13 @@ class ProductQueryServiceTest {
 
     private final ProductQueryService productQueryService = new ProductQueryService();
 
+    @BeforeAll
+    static void beforeAll() {
+        ProductRepository.loadAgain();
+    }
+
     @AfterEach
-    void setUp(){
+    void setUp() {
         ProductRepository.loadAgain();
     }
 
@@ -42,9 +48,11 @@ class ProductQueryServiceTest {
                 Arguments.of(
                         "콜라",
                         new Product(1, "콜라", 1000, 10,
-                                new Promotion("탄산2+1", 2, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-12-31"))),
+                                new Promotion("탄산2+1", 2, 1, LocalDate.parse("2024-01-01"),
+                                        LocalDate.parse("2024-12-31"))),
                         new Product(2, "콜라", 1000, 10,
-                                new Promotion("null", 1, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-01-01")))));
+                                new Promotion("null", 1, 1, LocalDate.parse("2024-01-01"),
+                                        LocalDate.parse("2024-01-01")))));
     }
 
     @ParameterizedTest
@@ -64,7 +72,8 @@ class ProductQueryServiceTest {
                 Arguments.of(
                         "콜라",
                         new Product(1, "콜라", 1000, 10,
-                                new Promotion("탄산2+1", 2, 1, LocalDate.parse("2024-01-01"), LocalDate.parse("2024-12-31")))));
+                                new Promotion("탄산2+1", 2, 1, LocalDate.parse("2024-01-01"),
+                                        LocalDate.parse("2024-12-31")))));
     }
 
     @ParameterizedTest

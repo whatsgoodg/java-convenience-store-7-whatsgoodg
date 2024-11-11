@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -22,7 +23,12 @@ class OrderFacadeTest {
     private final OrderFacade orderFacade = new OrderFacade();
 
     @AfterEach
-    void setUp(){
+    void setUp() {
+        ProductRepository.loadAgain();
+    }
+
+    @BeforeAll
+    static void beforeAll() {
         ProductRepository.loadAgain();
     }
 

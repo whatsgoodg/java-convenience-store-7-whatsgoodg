@@ -4,16 +4,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import store.back.repository.ProductRepository;
 import store.global.dto.request.purchase.PurchaseProductInfo;
 import store.global.dto.response.purchase.NonPromotionalProductInfo;
 
 class NonPromotionCheckServiceTest {
     private final NonPromotionCheckService nonPromotionCheckService = new NonPromotionCheckService();
 
+    @BeforeAll
+    static void setUp() {
+        ProductRepository.loadAgain();
+    }
+    
     @ParameterizedTest
     @MethodSource("fullPriceProductInfoParams")
     @DisplayName("상품을 구매할 때, 프로모션이 존재하는 상품은 있지만 수량이 적어 정가로 구매해야하는 상품을 반환하는 테스트")

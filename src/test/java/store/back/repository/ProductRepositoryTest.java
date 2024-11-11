@@ -1,11 +1,13 @@
 package store.back.repository;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +22,12 @@ class ProductRepositoryTest {
     private final ProductRepository productRepository = new ProductRepository();
 
     @BeforeAll
-    static void setUp(){
+    static void beforeAll() {
+        ProductRepository.loadAgain();
+    }
+
+    @AfterEach
+    void setUp() {
         ProductRepository.loadAgain();
     }
 

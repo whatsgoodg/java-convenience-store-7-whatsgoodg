@@ -17,7 +17,7 @@ class InvoiceInfoMessageBuilderTest {
     @ParameterizedTest
     @MethodSource("invoiceMessageBuildParams")
     @DisplayName("영수증 정보를 담은 InvoiceInfo를 통해 출력 메시지 생성 테스트")
-    void 영수증_출력_메시지_테스트(final InvoiceInfo invoiceInfo, final List<String> messages){
+    void 영수증_출력_메시지_테스트(final InvoiceInfo invoiceInfo, final List<String> messages) {
         //given
         //when
         String buildMessage = InvoiceInfoMessageBuilder.build(invoiceInfo);
@@ -25,7 +25,7 @@ class InvoiceInfoMessageBuilderTest {
         assertThat(buildMessage).contains(messages);
     }
 
-    private static Stream<Arguments> invoiceMessageBuildParams(){
+    private static Stream<Arguments> invoiceMessageBuildParams() {
         return Stream.of(
                 Arguments.of(
                         new InvoiceInfo(

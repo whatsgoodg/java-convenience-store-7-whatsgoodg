@@ -17,7 +17,7 @@ class StockValidationServiceTest {
     private final StockValidationService stockValidationService = new StockValidationService();
 
     @BeforeAll
-    static void setUp(){
+    static void setUp() {
         ProductRepository.loadAgain();
     }
 

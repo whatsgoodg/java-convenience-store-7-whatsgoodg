@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.time.LocalDate;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import store.back.repository.ProductRepository;
 
@@ -14,8 +15,13 @@ class ConvenienceStoreControllerTest extends NsTest {
 
     private final ConvenienceStoreController convenienceStoreController = new ConvenienceStoreController();
 
+    @BeforeAll
+    static void setUp() {
+        ProductRepository.loadAgain();
+    }
+
     @AfterEach
-    void setUp() {
+    void afterEach() {
         ProductRepository.loadAgain();
     }
 

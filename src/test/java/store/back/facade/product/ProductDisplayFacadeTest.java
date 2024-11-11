@@ -3,7 +3,7 @@ package store.back.facade.product;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import store.back.repository.ProductRepository;
@@ -13,8 +13,8 @@ import store.global.dto.response.display.ProductInfo;
 class ProductDisplayFacadeTest {
     private final ProductDisplayFacade productDisplayFacade = new ProductDisplayFacade();
 
-    @AfterEach
-    void setUp(){
+    @BeforeAll
+    static void setUp(){
         ProductRepository.loadAgain();
     }
 

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -19,8 +20,13 @@ class OrderServiceTest {
     private final ProductRepository productRepository = new ProductRepository();
     private final OrderService orderService = new OrderService();
 
+    @BeforeAll
+    static void beforeAll() {
+        ProductRepository.loadAgain();
+    }
+
     @AfterEach
-    void setUp(){
+    void setUp() {
         ProductRepository.loadAgain();
     }
 
