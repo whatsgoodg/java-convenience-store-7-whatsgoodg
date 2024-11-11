@@ -46,7 +46,7 @@ public class NonPromotionCheckService {
         Integer buyAndGet = product.getPromotion().getBuy() + product.getPromotion().getGet();
         int productInfoPromotionCount = purchaseProductInfo.quantity() / buyAndGet - product.getQuantity() / buyAndGet;
         int quantityAfterPromotion = purchaseProductInfo.quantity() % buyAndGet;
-        // 현재 프로모션 재고를 넘치지 않는 경우
+
         if (productInfoPromotionCount < 0 || (productInfoPromotionCount == 0 && quantityAfterPromotion == 0)) {
             return Optional.empty();
         }

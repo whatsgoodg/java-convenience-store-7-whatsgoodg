@@ -34,7 +34,6 @@ public class OrderLineService {
                 orderLine.setOrderLineStatus(OrderLineStatus.MEMBERSHIP);
             }
         });
-
     }
 
     private List<OrderLine> createOrderLinesBeforeMembership(final OrderProductInfo orderProductInfo) {

@@ -15,7 +15,7 @@ class ConvenienceStoreControllerTest extends NsTest {
     private final ConvenienceStoreController convenienceStoreController = new ConvenienceStoreController();
 
     @AfterEach
-    void setUp(){
+    void setUp() {
         ProductRepository.loadAgain();
     }
 
@@ -65,6 +65,22 @@ class ConvenienceStoreControllerTest extends NsTest {
             run("[오렌지주스-4],[사이다-7],[초코바-2]", "Y", "N");
             assertThat(output().replaceAll("\\s", "")).contains("내실돈11,620");
         }, LocalDate.of(2023, 2, 1).atStartOfDay());
+    }
+
+    @Test
+    void 프로모션_미적용_상품_제외시_구매수량이_0일경우_제외() {
+        assertSimpleTest(() -> {
+            run("[콜라-10],[컵라면-10]", "Y", "N", "N", "N");
+            assertThat(output().replaceAll("\\s", "")).contains("내실돈7,000");
+        });
+    }
+
+    @Test
+    void 프로모션_미적용_상품_제외시_구매_물건이_아예없으면_다시_입력_받기() {
+        assertSimpleTest(() -> {
+            run("[컵라면-10]", "N", "[콜라-10]", "Y", "N", "N");
+            assertThat(output().replaceAll("\\s", "")).contains("내실돈7,000");
+        });
     }
 
     @Override

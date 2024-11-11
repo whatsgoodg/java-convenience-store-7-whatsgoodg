@@ -13,7 +13,6 @@ class FileRowLoaderTest {
     void 파일_로드_테스트1() {
         //given
         String filePath = "products.md";
-        // 맨 윗줄과 마지막 줄을 포함하는지
         List<String> expectedRow1 = List.of("콜라", "1000", "10", "탄산2+1");
         List<String> expectedRow2 = List.of("컵라면", "1700", "10", "null");
         //when
