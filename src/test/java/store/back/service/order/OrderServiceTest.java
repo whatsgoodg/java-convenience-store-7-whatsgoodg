@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,8 +20,8 @@ class OrderServiceTest {
     private final ProductRepository productRepository = new ProductRepository();
     private final OrderService orderService = new OrderService();
 
-    @BeforeAll
-    static void setUp(){
+    @AfterEach
+    void setUp(){
         ProductRepository.loadAgain();
     }
 
@@ -65,6 +66,6 @@ class OrderServiceTest {
                         List.of(
                                 new OrderLine("컵라면", 2, 3400, OrderLineStatus.MEMBERSHIP)),
                         18,
-                        7));
+                        9));
     }
 }

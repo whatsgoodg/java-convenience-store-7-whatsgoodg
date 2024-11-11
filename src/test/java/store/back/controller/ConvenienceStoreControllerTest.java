@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.time.LocalDate;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import store.back.repository.ProductRepository;
 
@@ -14,8 +14,8 @@ class ConvenienceStoreControllerTest extends NsTest {
 
     private final ConvenienceStoreController convenienceStoreController = new ConvenienceStoreController();
 
-    @BeforeAll
-     static void setUp(){
+    @AfterEach
+    void setUp(){
         ProductRepository.loadAgain();
     }
 
@@ -39,7 +39,7 @@ class ConvenienceStoreControllerTest extends NsTest {
     void 상품_구매_테스트3() {
         assertSimpleTest(() -> {
             run("[콜라-10],[컵라면-1],[초코바-3]", "N", "Y", "N", "N");
-            assertThat(output().replaceAll("\\s", "")).contains("내실돈14,100");
+            assertThat(output().replaceAll("\\s", "")).contains("내실돈11,100");
         });
     }
 

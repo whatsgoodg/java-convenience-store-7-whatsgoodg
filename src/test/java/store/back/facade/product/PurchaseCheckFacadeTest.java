@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,8 +23,8 @@ import store.global.exception.OutOfStockException;
 class PurchaseCheckFacadeTest {
     private final PurchaseCheckFacade purchaseCheckFacade = new PurchaseCheckFacade();
 
-    @BeforeAll
-    static void setUp(){
+    @AfterEach
+    void setUp(){
         ProductRepository.loadAgain();
     }
 
